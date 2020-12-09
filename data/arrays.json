@@ -1,0 +1,395 @@
+{
+  "data": [
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    },
+    {
+      "numero": "67567",
+      "cdc": "6080",
+      "data": "2011/04/25",
+      "tipo": "O",
+      "fornitore": {
+        "id": "2345",
+        "nome": "Passamonti"
+      },
+      "anno": 2020,
+      "stato": "Attivo",
+      "richiedente": {
+        "id": "0034",
+        "nome": "Gavino Paddeu"
+      },
+      "oggetto": "acquisto di materiale",
+      "specifica": "",
+      "n_offerta": "3445",
+      "data_offerta": "20/11/2019",
+      "valuta": "Euro",
+      "importo": "20000",
+      "installazione": "Inclusa",
+      "imballo": "Gratis",
+      "garanzia": "Compresa",
+      "note": "nessuna"
+    }
+
+  ]
+}

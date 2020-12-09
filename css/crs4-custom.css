@@ -1,0 +1,37 @@
+td.details-control {
+  background: url('../images/details_open.png') no-repeat center center;
+  cursor: pointer;
+}
+tr.shown td.details-control {
+  background: url('../images/details_close.png') no-repeat center center;
+}
+html,body
+{
+  margin:0px;
+  padding:0px;
+  border:0px;
+}
+
+.crs4_function{
+  display: none;
+}
+iframe{
+  display: block;       /* iframes are inline by default */
+  border: none;         /* Reset default border */
+  height: 120vh;        /* Viewport-relative units */
+  width: 100%;
+  margin:0px;
+  padding:0px;
+  border:none;
+  overflow:hidden;
+}
+
+.crs4-highlight{
+  background-color: red !important;
+}
+
+
+.crs4-icon{
+  vertical-align: middle;
+  margin-right: 3px;
+}
