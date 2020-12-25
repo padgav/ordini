@@ -7,6 +7,7 @@
 
 // DataTables PHP library and database connection
 include( "lib/DataTables.php" );
+include( "Crs4.php" );
 
 // Alias Editor classes so they are easy to use
 use
@@ -19,32 +20,14 @@ use
 	DataTables\Editor\Validate,
 	DataTables\Editor\ValidateOptions;
 
-// The following statement can be removed after the first run (i.e. the database
-// table has been created). It is a good idea to do this to help improve
-// performance.
-// $db->sql( "CREATE TABLE IF NOT EXISTS `T_Richieste` (
-// 	`ID_Richiesta` int(10) NOT NULL auto_increment,
-// 	`id_compilata_da` numeric(9,2),
-// 	`id_richiedente` numeric(9,2),
-// 	`id_responsabile` numeric(9,2),
-// 	`id_progetto` numeric(9,2),
-// 	`cig` numeric(9,2),
-// 	`id_fornitore` numeric(9,2),
-// 	`oggetto` text,
-// 	`imponibile` numeric(9,2),
-// 	`iva` numeric(9,2),
-// 	`totale` numeric(9,2),
-// 	`note` varchar(255),
-// 	`c_pagamento` varchar(255),
-// 	`preventivo` varchar(255),
-// 	`id_stato_richiesta` numeric(9,2),
-// 	PRIMARY KEY( `ID_Richiesta` )
-// );" );
 
+	
 // Build our Editor instance and process the data coming from _POST
-Editor::inst( $db, 'T_Richieste', 'ID_Richiesta' )
-	->fields(
-		Field::inst( 'T_Richieste.id_compilata_da' ),
+$editor = Editor::inst( $db, 'T_Richieste', 'ID' );
+$crs4 = new Crs4("Richieste", $db, $editor);
+	$editor->fields(
+		Field::inst( 'T_Richieste.owner' ),
+
 		Field::inst( 'T_Richieste.id_richiedente' )
 		->options( Options::inst()
 		->table( 'V_People_all' )
@@ -52,21 +35,99 @@ Editor::inst( $db, 'T_Richieste', 'ID_Richiesta' )
 		->label( array('Nome', 'Cognome')  )
 		)
 		->validator( Validate::dbValues() ),
-		Field::inst( 'V_People_all.Cognome' ),
+		
 
-		Field::inst( 'T_Richieste.id_responsabile' ),
-		Field::inst( 'T_Richieste.id_progetto' ),
+		Field::inst( 'T_Richieste.id_responsabile' )
+		->options( Options::inst()
+		->table( 'V_People_all' )
+		->value( 'ID' )
+		->label( array('Nome', 'Cognome')  )
+		)
+		->validator( Validate::dbValues() ),
+
+
+		Field::inst( 'T_Richieste.id_progetto' )
+		->options( Options::inst()
+		->table( 'T_Progetti' )
+		->value( 'ID' )
+		->label( array('cdc', 'acronimo')  )
+		)
+		->validator( Validate::dbValues() ),
+
 		Field::inst( 'T_Richieste.cig' ),
-		Field::inst( 'T_Richieste.id_fornitore' ),
+
+		Field::inst( 'T_Richieste.id_fornitore' )
+		->options( Options::inst()
+		->table( 'T_Fornitori' )
+		->value( 'id_fornitore' )
+		->label( 'fornitore' )
+		)
+		->validator( Validate::dbValues() ),
+
+
 		Field::inst( 'T_Richieste.oggetto' ),
 		Field::inst( 'T_Richieste.imponibile' ),
 		Field::inst( 'T_Richieste.iva' ),
 		Field::inst( 'T_Richieste.totale' ),
 		Field::inst( 'T_Richieste.note' ),
-		Field::inst( 'T_Richieste.c_pagamento' ),
-		Field::inst( 'T_Richieste.preventivo' ),
-		Field::inst( 'T_Richieste.id_stato_richiesta' )
-	)
-	->leftJoin( 'V_People_all', 'V_People_all.ID', '=', 'T_Richieste.id_richiedente' )
+		
+		Field::inst( 'T_Richieste.soglia' ),
+		Field::inst( 'T_Richieste.procedura' ),
+		Field::inst( 'T_Richieste.tipologia_spesa' ),
+		Field::inst( 'T_Richieste.prod_inf' ),
+		Field::inst( 'T_Richieste.mepa' ),
+		Field::inst( 'T_Richieste.prestazione_servizi' ),
+		Field::inst( 'T_Richieste.consegna' ),
+		Field::inst( 'T_Richieste.consip' ),
+		Field::inst( 'T_Richieste.mepa_beni' ),
+		Field::inst( 'T_Richieste.mepa_servizi' ),
+		Field::inst( 'T_Richieste.id_stato_richiesta' ),
+		Field::inst( 'V_People_all.Cognome' ),
+		Field::inst( 'V_People_all.Nome' ),
+		Field::inst( 'v2.Cognome' ),
+		Field::inst( 'v2.Nome' ),
+		Field::inst( 'v3.Cognome' ),
+		Field::inst( 'v3.Nome' ),
+		Field::inst( 'T_Fornitori.fornitore' ),
+		Field::inst( 'T_Progetti.cdc' ),
+		Field::inst( 'T_Progetti.acronimo' ),
+		Field::inst( 'T_Richieste.id' ),
+		)
+		->join(
+			Mjoin::inst( 'T_Files' )
+				->link( 'T_Richieste.id', 'T_richieste_files.id_richiesta' )
+				->link( 'T_Files.id',     'T_richieste_files.id_file' )
+				->fields(
+					Field::inst( 'id' )
+						->upload( Upload::inst( $_SERVER['DOCUMENT_ROOT'].'/uploads/__ID__.__EXTN__' )
+							->db( 'T_Files', 'id', array(
+								'filename'    => Upload::DB_FILE_NAME,
+								'filesize'    => Upload::DB_FILE_SIZE,
+								'filetype'    => Upload::DB_CONTENT_TYPE,
+								'web_path'    => Upload::DB_WEB_PATH,
+							) )
+							
+		
+						)
+				)
+		)
+	 ->leftJoin( 'V_People_all', 'V_People_all.ID', '=', 'T_Richieste.owner' )
+	 ->leftJoin( 'V_People_all as v2', 'v2.ID', '=', 'T_Richieste.id_richiedente' )
+	 ->leftJoin( 'V_People_all as v3', 'v3.ID', '=', 'T_Richieste.id_responsabile' )
+	 ->leftJoin( 'T_Fornitori ', 'T_Fornitori.id_fornitore', '=', 'T_Richieste.id_fornitore' )
+	 ->leftJoin( 'T_Progetti ', 'T_Progetti.id', '=', 'T_Richieste.id_progetto' )
 	->process( $_POST )
 	->json();
+
+
+
+	// Field::inst( 'T_Richieste.allegati' )
+		// 	->upload( Upload::inst( $_SERVER['DOCUMENT_ROOT'].'/uploads/__ID__.__EXTN__' ) 
+		// 	->db( 'T_Files', 'id', array(
+		// 		'filename' => Upload::DB_FILE_NAME,
+		// 		'filesize' => Upload::DB_FILE_SIZE,
+		// 		'filetype' => Upload::DB_CONTENT_TYPE,
+		// 		'web_path' => Upload::DB_WEB_PATH
+		// 	) )
+		// 	)
+		// 	->setFormatter( 'Format::nullEmpty' ),

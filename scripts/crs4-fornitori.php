@@ -47,6 +47,7 @@ $crs4 = new Crs4("Fornitori", $db, $editor);
 
 
 	$editor->fields(
+		Field::inst( 'T_Fornitori.owner' ),
 		Field::inst( 'T_Fornitori.fornitore' ),
 		Field::inst( 'T_Fornitori.indirizzo' ),
 		Field::inst( 'T_Fornitori.n_civico' ),

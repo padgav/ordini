@@ -128,7 +128,7 @@ $(function () {
 
            
         ],
-        "order": [[1, 'asc']],
+        "order": [[2, 'desc'],[1,'desc']],
 
         dom: "Bfrtip",
         select: true,

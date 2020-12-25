@@ -60,15 +60,15 @@ $/*
                         "name": "T_Fornitori.pec"
                     },
                     {
-                        "label": "PEC:",
+                        "label": "Partita IVA:",
                         "name": "T_Fornitori.piva"
                     },
                     {
-                        "label": "PEC:",
+                        "label": "Codice Fiscale:",
                         "name": "T_Fornitori.cfiscale"
                     },
                     {
-                        "label": "PEC:",
+                        "label": "IBAN:",
                         "name": "T_Fornitori.iban"
                     },
                     {
@@ -76,7 +76,25 @@ $/*
                         "name": "T_Fornitori.note",
                         "type": "textarea"
                     }
-                ]
+                ],
+                i18n: {
+                    create: {
+                        button: "Nuovo",
+                        title:  "Nuovo Fornitore ",
+                        submit: "Crea"
+                    },
+                    edit: {
+                        button: "Modifica",
+                        title:  "Modifica Fornitore ",
+                        submit: "Modifica"
+                    },
+                    remove: {
+                        button: "Rimuovi",
+                        title:  "Rimuovi Fornitore ",
+                        submit: "Rimuovi",
+                        confirm: "Sei sicuro di voler rimuovere %d fornitore(i)?"
+                    }
+                }
             });
 
             // Activate an inline edit on click of a table cell
