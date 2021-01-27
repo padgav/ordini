@@ -15,6 +15,18 @@ html,body
 .crs4_function{
   display: none;
 }
+
+#login_page{
+  display: none;
+}
+#all_content{
+  display: none;
+}
+
+#login_error{
+  display: none;
+}
+
 iframe{
   display: block;       /* iframes are inline by default */
   border: none;         /* Reset default border */

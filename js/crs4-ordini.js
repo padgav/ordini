@@ -23,6 +23,18 @@ var editor; // use a global for the submit and return data rendering in the exam
 
 $(function () {
 
+    editornew = new $.fn.dataTable.Editor( {
+        ajax: "scripts/crs4-ordini.php",
+        table: "#ordini",
+        fields: [ 
+            {
+                label: "Richiesta",
+                name: "T_Ordini.id_richiesta",
+                type: "select"
+            }
+        ]
+    });
+
     editor = new $.fn.dataTable.Editor( {
         ajax: "scripts/crs4-ordini.php",
         table: "#ordini",
@@ -33,8 +45,9 @@ $(function () {
             //     type: "readonly"
             // }, 
             {
-                label: "CDC:",
-                name: "T_Ordini.cdc"
+                label: "Richiesta",
+                name: "T_Ordini.id_richiesta",
+                type: "select"
             }, 
             // {
             //     label: "Anno:",
@@ -134,7 +147,7 @@ $(function () {
         select: true,
 
         buttons: [
-            { extend: "create", editor: editor },
+            { extend: "create", editor: editornew },
             { extend: "edit",   editor: editor },
             { extend: "remove", editor: editor },
             { extend: "selectedSingle", 
@@ -142,6 +155,7 @@ $(function () {
               action: function ( e, dt, node, config ) {
                 var id = dt.row( { selected: true } ).data().T_Ordini.Id_Ordine;
                 parent.ID_ORDINI = id;
+                
 
                 var df = $('#T_Dati_Fisc').DataTable();
                 df.columns(13).search(id); 
@@ -172,19 +186,19 @@ $(function () {
         if ( type === 'row' ) {
             var data = ordini.rows( indexes ).data();
             var id = data[0].T_Ordini.Id_Ordine;
-     
+            
             parent.ID_ORDINI = id;
 
             var df = $('#T_Dati_Fisc').DataTable();
-            df.columns(10).search(id); 
+            df.columns(11).search(id); 
             df.draw(); 
 
             var fatt = $('#T_Fatture').DataTable();
-            fatt.columns(10).search(id);
+            fatt.columns(11).search(id);
             fatt.draw();
 
             var bolle = $('#T_Bolle').DataTable();
-            bolle.columns(3).search(id);
+            bolle.columns(4).search(id);
             bolle.draw();
         }
     } );

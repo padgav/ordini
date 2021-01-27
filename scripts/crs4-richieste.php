@@ -91,6 +91,8 @@ $crs4 = new Crs4("Richieste", $db, $editor);
 		Field::inst( 'T_Fornitori.fornitore' ),
 		Field::inst( 'T_Progetti.cdc' ),
 		Field::inst( 'T_Progetti.acronimo' ),
+		Field::inst( 'T_Progetti.cup' ),
+		Field::inst( 'T_Progetti.finanziamento' ),
 		Field::inst( 'T_Richieste.id' ),
 		)
 		->join(

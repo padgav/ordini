@@ -10,7 +10,7 @@
 		var editor = new $.fn.dataTable.Editor({
 			ajax: 'scripts/crs4-richieste.php',
 			table: '#T_Richieste',
-			//template: '#RichiesteCustomForm',
+			template: '#RichiesteCustomForm',
 			fields: [
 				{
 					"label": "Richiedente:",
@@ -70,15 +70,15 @@
 					label: "Procedura",
 					"name": "T_Richieste.procedura",
 					type: "select",
-					options: ["Procedura aperta", "Proedura negoziata", "Affidamento diretto"]
+					options: ["Procedura aperta", "Procedura negoziata", "Affidamento diretto"]
 				},
 
-				{
-					label: "Tipologia di Spesa",
-					"name": "T_Richieste.tipologia_spesa",
-					type: "select",
-					options: ["", "", ""]
-				},
+				// {
+				// 	label: "Tipologia di Spesa",
+				// 	"name": "T_Richieste.tipologia_spesa",
+				// 	type: "select",
+				// 	options: ["", "", ""]
+				// },
 
 				{
 					label: "Prodotti informatici",
@@ -164,7 +164,11 @@
 				decimal: ",",
 				thousands: "."
 			},
+			order: [[ 2, "desc" ]],
 			columns: [
+				{
+					"data": "T_Richieste.id",
+				},
 				{
 					"data": null,
 					render: function (data, type, row) {
@@ -208,7 +212,7 @@
 				{ data: "T_Richieste.note" },
 				{ "data": "T_Richieste.soglia" },
 				{ "data": "T_Richieste.procedura" },
-				{ "data": "T_Richieste.tipologia_spesa" },
+				// { "data": "T_Richieste.tipologia_spesa" },
 				{ "data": "T_Richieste.prod_inf" },
 				{ "data": "T_Richieste.mepa" },
 				{ "data": "T_Richieste.prestazione_servizi" },
@@ -253,6 +257,9 @@
 				{ extend: 'create', editor: editor },
 				{ extend: 'edit', editor: editor },
 				{ extend: 'remove', editor: editor },
+				{ text: "Bozze", action: function(e, dt, node, config){ dt.column(22).search("Bozza").draw(); }},
+				{ text: "In Valutazione", action: function(e, dt, node, config){ dt.column(22).search("In Valutazione").draw(); }},
+				{ text: "Approvate", action: function(e, dt, node, config){ dt.column(22).search("Approvata").draw(); }}
 				
 			]
 		});

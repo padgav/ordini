@@ -22,14 +22,20 @@ var USER;
     $(document).ready(function () {
         var cookieValue = $.cookie("PHPSESSID");
         if (cookieValue != undefined) {
-            $("#login_page").hide();
-            $("#all_content").show();
             getUserInfo();
         }
         else{
             $("#login_page").show();
             $("#all_content").hide();
         }
+        $("#username").on("keypress", function(){
+            $("#login_error").hide();
+
+        });
+        $("#password").on("keypress", function(){
+            $("#login_error").hide();
+
+        });
         $("#login_btn").on("click", function () {
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
@@ -38,7 +44,14 @@ var USER;
                 if(message.status.code == 101) {
                     $("#login_page").hide();
                     $("#all_content").show();
-                    setUserInfo(message.data);
+                    getUserInfo();
+                }
+                else if(message.status.code == 102){
+                    $("#login_page").show();
+                    $("#all_content").hide();
+                    $("#login_error").show();
+                    $("#username").val("");
+                    $("#password").val("");
                 }
             });
         });
@@ -68,13 +81,19 @@ var USER;
         var params = 'cmd=getuserinfo';
         serverMessage(params, function(message){
             if(message.status.code == 101) {
+                $("#login_page").hide();
+                $("#all_content").show();
                 setUserInfo(message);
+            }
+            else{
+                $("#login_page").show();
+                $("#all_content").hide();
+                $.cookie("PHPSESSID", null, { path: '/' });
             }
         });
     }
 
     function setFunctions(permessi){
-        console.log(permessi);
         permessi.map(function(item){
             $("#app"+item.id_applicazione).show();
         })

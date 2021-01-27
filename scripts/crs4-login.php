@@ -24,7 +24,6 @@ if($cmd == "login"){
     $user = $_VARS["username"];
     $password = $_VARS["password"];
     
-    
     $url = 'https://giustificativi.crs4.it/LDAP/';
     $data = array('username' => $user, 'password' => $password);
     
@@ -49,8 +48,6 @@ if($cmd == "login"){
       /* Handle error */ 
       $out["status"]["code"] = 102;
       $out["status"]["message"] = "Login Error";
-
-
       echo json_encode($out);
       exit(0);
   
@@ -63,19 +60,8 @@ if($cmd == "login"){
         $out["status"]["code"] = 101;
         $out["status"]["message"] = "Login Successful";
         $out["data"] = array("userid" => $resultjson["USER_UUID"], "nome" => $resultjson["NOME"],  "cognome" => $resultjson["COGNOME"]    ) ;
-       
-       $var = Editor::inst( $db, 'T_Permessi', 'id' )->fields(
-          Field::inst( 'T_Permessi.id_funzione' ),
-		      Field::inst( 'T_Permessi.permesso' )
-        )
-          ->where( 'id_persona',  $resultjson["USER_UUID"])->process($_POST)->data();
-      
-      $out["permessi"] = $var["data"];
-      echo json_encode($out);
+        echo json_encode($out);
         exit(0);
-
-    
-    
   } 
 }
 else if($cmd == "getuserinfo"){
@@ -160,7 +146,6 @@ foreach ($result2["data"] as $p) {
 else if($cmd == "logout"){
   $out["status"]["code"] = 101;
   $out["status"]["message"] = "Logout Successful";
-  $out["data"] = array("user" => "Gavino");
   $_SESSION = array();
   session_destroy();
   echo json_encode($out);

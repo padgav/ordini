@@ -124,31 +124,91 @@
 	<script src="js/crs4-richieste-oggetti.js"></script>
 	<script src="js/crs4-richieste.js"></script>
 	
+	<style>
+#RichiesteCustomForm {
+    display: flex;
+    flex-flow: row wrap;
+}
+ 
+#RichiesteCustomForm fieldset {
+    flex: 1;
+    border: 1px solid #aaa;
+    margin: 0.5em;
+}
+ 
+#RichiesteCustomForm fieldset legend {
+    padding: 5px 20px;
+    border: 1px solid #aaa;
+    font-weight: bold;
+}
+ 
+#RichiesteCustomForm fieldset.project {
+    flex: 2 100%;
+}
+ 
+#RichiesteCustomForm fieldset.name legend {
+    background: #bfffbf;
+}
+ 
+#RichiesteCustomForm fieldset.project legend {
+    background: #ffffbf;
+}
+ 
+#RichiesteCustomForm fieldset.fornitore legend {
+    background: #ffbfbf;
+}
+#RichiesteCustomForm fieldset.richiesta legend {
+    background: #bfbfff;
+}
+ 
+#RichiesteCustomForm div.DTE_Field {
+    padding: 5px;
+}
+	</style>
 	
 </head>
 
 <body id="theme-default" class="full_block">
 
 
-		<!-- <div id="RichiesteCustomForm">
+		<div id="RichiesteCustomForm">
 				<fieldset class="name">
-					<legend>Name</legend>
+					<legend>Richiedente</legend>
 					<editor-field name="T_Richieste.id_richiedente"></editor-field>
 					<editor-field name="T_Richieste.id_responsabile"></editor-field>
 				</fieldset>
-				<fieldset class="office">
-					<legend>Office</legend>
-					<editor-field name="office"></editor-field>
-					<editor-field name="extn"></editor-field>
+				<fieldset class="project">
+					<legend>Progetto</legend>
+					<editor-field name="T_Richieste.id_progetto"></editor-field>
 				</fieldset>
-				<fieldset class="hr">
-					<legend>HR info</legend>
-					<editor-field name="position"></editor-field>
-					<editor-field name="salary"></editor-field>
-					<editor-field name="start_date"></editor-field>
+				<fieldset class="fornitore">
+					<legend>Fornitore</legend>
+					<editor-field name="T_Richieste.id_fornitore"></editor-field>
+					<editor-field name="T_Richieste.consegna"></editor-field>
 				</fieldset>
-			</div> -->
+				<fieldset class="richiesta">
+					<legend>Richiesta</legend>
+					<editor-field name="T_Richieste.cig"></editor-field>
+					<editor-field name="T_Richieste.oggetto"></editor-field>
+					<editor-field name="T_Richieste.imponibile"></editor-field>
+					<editor-field name="T_Richieste.iva"></editor-field>
+					<editor-field name="T_Richieste.totale"></editor-field>
+					<editor-field name="T_Richieste.note"></editor-field>
 
+					<editor-field name="T_Richieste.soglia"></editor-field>
+					<editor-field name="T_Richieste.procedura"></editor-field>
+					<editor-field name="T_Richieste.prod_inf"></editor-field>
+					<editor-field name="T_Richieste.mepa"></editor-field>
+					<editor-field name="T_Richieste.consip"></editor-field>
+					<editor-field name="T_Richieste.mepa_beni"></editor-field>
+					<editor-field name="T_Richieste.mepa_servizi"></editor-field>
+					<editor-field name="T_Richieste.prestazione_servizi"></editor-field>
+					<editor-field name="T_Files[].id"></editor-field>
+					<editor-field name="T_Richieste.id_stato_richiesta"></editor-field>
+					
+
+				</fieldset>
+			</div>
 
 
 	<div class="grid_container">
@@ -164,6 +224,7 @@
 					<table id="T_Richieste" data-page-length='10' class="display cell-border  stripe hover">
 						<thead>
 							<tr>
+								<th>Numero Richiesta</th>
 								<th>Compilata da</th>
 								<th>Richiedente</th>
 								<th>Responsabile</th>
@@ -177,7 +238,7 @@
 								<th>Note</th>
 								<th>Soglia</th>
 								<th>Procedura</th>
-								<th>Tipologia di spesa</th>
+								<!-- <th>Tipologia di spesa</th> -->
 								<th>Prod. inf.</th>
 								<th>Mepa</th>
 								<th>Prestazione/servizi</th>
@@ -191,6 +252,7 @@
 						</thead>
 						<tfoot>
 							<tr>
+								<th>Numero Richiesta</th>
 								<th>Compilata da</th>
 								<th>Richiedente</th>
 								<th>Responsabile</th>
@@ -204,7 +266,7 @@
 								<th>Note</th>
 								<th>Soglia</th>
 								<th>Procedura</th>
-								<th>Tipologia di spesa</th>
+								<!-- <th>Tipologia di spesa</th> -->
 								<th>Prod. inf.</th>
 								<th>Mepa</th>
 								<th>Prestazione/servizi</th>

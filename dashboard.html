@@ -408,7 +408,7 @@
 					<li class="user_thumb"><a href="#"><span class="icon"><img src="images/user_thumb.png" width="30" height="30" alt="User"></span></a></li>
 					<li class="user_info"><span class="user_name"></span>
 						<!-- <span><a href="#">Profile</a> &#124; <a href="#">Settings</a> &#124; <a href="#">Help&#63;</a></span></li> -->
-					<li class="logout"><a href="#"><span id="logout" class="icon"></span>Logout</a></li>
+					<li class="logout"><a href=""><span id="logout" class="icon"></span>Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -449,14 +449,15 @@
 				</ul>
 			</div>
 			<div class="block_container no_block">
-				<form>
+				<form autocomplete='on'>
 					<div class="block_form">
 						<ul>
 							<li class="login_user">
-							<input id="username" placeholder="username" type="text">
+							<input id="username" placeholder="username" type="text" autocomplete="username">
 							</li>
 							<li class="login_pass">
-							<input id="password" type="password" placeholder="123456">
+							<input id="password" type="password" placeholder="password" autocomplete="username">
+							<label id="login_error" for="password" generated="true" class="error">Utente o password errati</label>
 							</li>
 						</ul>
 						<input id="login_btn" class="login_btn blue_lgel" name="" value="Login" type="button">

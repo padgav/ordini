@@ -6,6 +6,12 @@
 (function($){
 
 $(document).ready(function() {
+	var cookieValue = $.cookie("PHPSESSID");
+    if (cookieValue === undefined) {
+	    window.location.href  = "dashboard.html";
+    }
+
+
 	var editor = new $.fn.dataTable.Editor( {
 		ajax: 'scripts/crs4-permessi.php',
 		table: '#T_Permessi',
@@ -73,6 +79,11 @@ $(document).ready(function() {
 			{ extend: 'remove', editor: editor }
 		]
 	} );
+
+	table.on( 'error.dt', function ( e, settings, techNote, message ) {
+		console.log( 'An error has been reported by DataTables: ', message );
+		window.location.href  = "dashboard.html";
+    } )
 } );
 
 }(jQuery));

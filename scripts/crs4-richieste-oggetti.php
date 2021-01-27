@@ -24,13 +24,15 @@ $editor = Editor::inst( $db, 'T_Richieste_Oggetti', 'T_Richieste_Oggetti.id' );
 $crs4 = new Crs4("Richieste", $db, $editor);
 
 // if($_POST["cmd"] == "create_order"){
-
-
+// 	$id_richiesta = $_POST["opt"];
 // }
 
 	$editor->fields(
 		Field::inst( 'T_Richieste_Oggetti.id_richiesta' ),
 		Field::inst( 'T_Richieste_Oggetti.owner' ),
+		Field::inst( 'T_Richieste_Oggetti.tipo' ),
+		Field::inst( 'T_Richieste_Oggetti.rateazione' ),
+		Field::inst( 'T_Richieste_Oggetti.numero_rate' ),
 		Field::inst( 'T_Richieste_Oggetti.descrizione' ),
 		Field::inst( 'T_Richieste_Oggetti.quantita' ),
 		Field::inst( 'T_Richieste_Oggetti.importo_unitario' ),

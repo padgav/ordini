@@ -28,6 +28,13 @@ use
 Editor::inst( $db, 'T_Ordini', 'T_Ordini.ID_Ordine' )
 	->fields(
         Field::inst( 'T_Ordini.Id_Ordine' ),
+        Field::inst( 'T_Ordini.id_richiesta' )
+        ->options( Options::inst()
+                ->table( 'T_Richieste' )
+                ->value( 'ID' )
+                ->label( array('ID', 'oggetto')  )
+            )
+            ->validator( Validate::dbValues() ),
 		Field::inst( 'T_Ordini.N_Ordine' ),
 		Field::inst( 'T_Ordini.ID_Persona' ),
         Field::inst( 'T_Ordini.cdc' ),
@@ -65,5 +72,6 @@ Editor::inst( $db, 'T_Ordini', 'T_Ordini.ID_Ordine' )
             ->setValue( $year );
     } )
     ->leftJoin( 'T_Fornitori', 'T_Fornitori.ID_Fornitore', '=', 'T_Ordini.ID_Fornitore' )
+    ->leftJoin( 'T_Richieste', 'T_Richieste.ID', '=', 'T_Ordini.id_richiesta' )
 	->process( $_POST )
 	->json();
