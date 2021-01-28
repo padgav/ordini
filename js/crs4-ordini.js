@@ -44,11 +44,11 @@ $(function () {
             //     name: "T_Ordini.N_Ordine",
             //     type: "readonly"
             // }, 
-            {
-                label: "Richiesta",
-                name: "T_Ordini.id_richiesta",
-                type: "select"
-            }, 
+            // {
+            //     label: "Richiesta",
+            //     name: "T_Ordini.id_richiesta",
+            //     type: "hidden"
+            // }, 
             // {
             //     label: "Anno:",
             //     name: "T_Ordini.Anno_Ordine",
@@ -58,7 +58,14 @@ $(function () {
                 label: "Data",
                 name: "T_Ordini.Data_Ordine",
                 type: "datetime"
-            }, {
+            }, 
+            {
+                label: "Progetto:",
+                name: "T_Ordini.id_cdc",
+                type: "select"
+            },
+            
+            {
                 label: "Fornitore:",
                 name: "T_Ordini.ID_Fornitore",
                 type: "select"
@@ -68,7 +75,8 @@ $(function () {
             }, 
             {
                 label: "Richiedente:",
-                name: "T_Ordini.id_richiedente"
+                name: "T_Ordini.id_richiedente",
+                type: "select"
             }, 
             {
                 label: "Stato:",
@@ -132,11 +140,19 @@ $(function () {
 
             { "data": "T_Ordini.N_Ordine" },
             { "data": "T_Ordini.Anno_Ordine" },
-            { "data": "T_Ordini.id_cdc" },
+            { "data": "T_Progetti.acronimo" , editField: "T_Ordini.id_dcd"},
             { "data": "T_Ordini.Data_Ordine" },
             { "data": "T_Fornitori.Fornitore",  editField: "T_Ordini.ID_Fornitore"},
             { "data": "T_Ordini.Oggetto"},
-            { "data": "T_Ordini.id_richiedente" },
+
+            {
+                "data": null,
+                render: function (data, type, row) {
+                    return data.V_People_all.cognome + ' ' + data.V_People_all.nome;
+                },
+                editField: "T_Ordini.id_richiedente"
+            },
+
             { "data": "T_Ordini.ID_St_Ord"}
 
            

@@ -18,6 +18,19 @@ $/*
                         type: "hidden"
                     },
                     {
+                        label: "Categoria:",
+                        name: "T_Richieste_Oggetti.categoria",
+                        type: "select",
+                        options: [
+                            "Leasing",
+                            "Assicurazione",
+                            "Altro Contratto",
+                            "Manutenzione a contratto",
+                            "Noleggio HW o SW",
+                            "Software a tempo"
+                        ]
+                    },
+                    {
                         label: "Descrizione:",
                         name: "T_Richieste_Oggetti.descrizione"
                     },
@@ -36,6 +49,9 @@ $/*
                             "Settimanale",
                             "Mensile",
                             "Bimestrale",
+                            "Trimestrale",
+                            "Quadrimestrale",
+                            "Pentamestrale",
                             "Semestrale",
                             "Annuale",
                             "Biennale"
@@ -102,6 +118,17 @@ $/*
                         type: "hidden"
                     },
                     {
+                        label: "Categoria:",
+                        name: "T_Richieste_Oggetti.categoria",
+                        type: "select",
+                        options: [
+                            "Bene Inventariabile",
+                            "Parte di bene Inventariabile",
+                            "Bene non inventariabile",
+                            "Materiale di consumo"
+                        ]
+                    },
+                    {
                         label: "Descrizione:",
                         name: "T_Richieste_Oggetti.descrizione"
                     },
@@ -166,11 +193,11 @@ $/*
 
 
             // Activate an inline edit on click of a table cell
-            $('#T_Richieste_Oggetti').on('click', 'tbody td:not(:first-child)', function (e) {
-                editor.inline(this, {
-                    onBlur: 'submit'
-                });
-            });
+            // $('#T_Richieste_Oggetti').on('click', 'tbody td:not(:first-child)', function (e) {
+            //     editor.inline(this, {
+            //         onBlur: 'submit'
+            //     });
+            // });
 
             var command = "";
             var options = ""
@@ -200,7 +227,11 @@ $/*
                     },
                     {
                         data: "T_Richieste_Oggetti.tipo",
-                        width: "50%",
+                        width: "5%",
+                    },
+                    {
+                        data: "T_Richieste_Oggetti.categoria",
+                        width: "5%",
                     },
                     {
                         data: "T_Richieste_Oggetti.descrizione",

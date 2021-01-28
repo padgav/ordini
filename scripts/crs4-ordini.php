@@ -42,12 +42,34 @@ Editor::inst( $db, 'T_Ordini', 'T_Ordini.ID_Ordine' )
                 
             )
             ->validator( Validate::dbValues() ),
-		Field::inst( 'T_Ordini.N_Ordine' ),
-		Field::inst( 'T_Ordini.id_richiedente' ),
-        Field::inst( 'T_Ordini.id_cdc' ),
+        Field::inst( 'T_Ordini.N_Ordine' ),
+        
+        Field::inst( 'T_Ordini.id_richiedente' )
+            ->options( Options::inst()
+             ->table( 'V_People_all' )
+             ->value( 'ID' )
+             ->label( array('Nome', 'Cognome')  )
+        )
+            ->validator( Validate::dbValues() ),
+            Field::inst( 'V_People_all.cognome' ),
+            Field::inst( 'V_People_all.nome' ),
+
+
+
+        Field::inst( 'T_Ordini.id_cdc' )
+            ->options( Options::inst()
+                ->table( 'T_Progetti' )
+                ->value( 'ID' )
+                ->label( 'acronimo' )
+            )
+            ->validator( Validate::dbValues() ),
+            Field::inst( 'T_Progetti.acronimo' ),
+
         Field::inst( 'T_Ordini.Anno_Ordine' ),
 		Field::inst( 'T_Ordini.Data_Ordine' ),
         Field::inst( 'T_Ordini.Oggetto' ),
+
+
         Field::inst( 'T_Ordini.ID_Fornitore' )
           ->options( Options::inst()
                 ->table( 'T_Fornitori' )
@@ -56,6 +78,9 @@ Editor::inst( $db, 'T_Ordini', 'T_Ordini.ID_Ordine' )
             )
             ->validator( Validate::dbValues() ),
         Field::inst( 'T_Fornitori.Fornitore' ),
+
+
+
         Field::inst( 'T_Ordini.ID_St_Ord' ), 
         Field::inst( 'T_Ordini.D_Garanzia' ), 
         Field::inst( 'T_Ordini.Note' )
@@ -162,5 +187,7 @@ Editor::inst( $db, 'T_Ordini', 'T_Ordini.ID_Ordine' )
     } )
     ->leftJoin( 'T_Fornitori', 'T_Fornitori.ID_Fornitore', '=', 'T_Ordini.ID_Fornitore' )
     ->leftJoin( 'T_Richieste', 'T_Richieste.ID', '=', 'T_Ordini.id_richiesta' )
+    ->leftJoin( 'T_Progetti', 'T_Progetti.ID', '=', 'T_Ordini.id_cdc' )
+    ->leftJoin( 'V_People_all', 'V_People_all.ID', '=', 'T_Ordini.id_richiedente' )
 	->process( $_POST )
 	->json();

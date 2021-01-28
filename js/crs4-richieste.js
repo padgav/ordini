@@ -259,7 +259,8 @@
 				{ extend: 'remove', editor: editor },
 				{ text: "Bozze", action: function(e, dt, node, config){ dt.column(22).search("Bozza").draw(); }},
 				{ text: "In Valutazione", action: function(e, dt, node, config){ dt.column(22).search("In Valutazione").draw(); }},
-				{ text: "Approvate", action: function(e, dt, node, config){ dt.column(22).search("Approvata").draw(); }}
+				{ text: "Approvate", action: function(e, dt, node, config){ dt.column(22).search("Approvata").draw(); }},
+				{ text: "Ordini", action: function(e, dt, node, config){ dt.column(22).search("Ordine").draw(); }}
 				
 			]
 		});
