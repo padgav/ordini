@@ -68,7 +68,7 @@ $(function () {
             }, 
             {
                 label: "Richiedente:",
-                name: "T_Ordini.ID_Persona"
+                name: "T_Ordini.id_richiedente"
             }, 
             {
                 label: "Stato:",
@@ -132,11 +132,11 @@ $(function () {
 
             { "data": "T_Ordini.N_Ordine" },
             { "data": "T_Ordini.Anno_Ordine" },
-            { "data": "T_Ordini.cdc" },
+            { "data": "T_Ordini.id_cdc" },
             { "data": "T_Ordini.Data_Ordine" },
             { "data": "T_Fornitori.Fornitore",  editField: "T_Ordini.ID_Fornitore"},
             { "data": "T_Ordini.Oggetto"},
-            { "data": "T_Ordini.ID_Persona" },
+            { "data": "T_Ordini.id_richiedente" },
             { "data": "T_Ordini.ID_St_Ord"}
 
            

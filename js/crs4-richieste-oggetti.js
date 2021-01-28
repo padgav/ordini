@@ -22,12 +22,38 @@ $/*
                         name: "T_Richieste_Oggetti.descrizione"
                     },
                     {
+                        label: "Tipo:",
+                        name: "T_Richieste_Oggetti.tipo",
+                        type: "hidden"
+                    },
+                    {
                         label: "Rateazione:",
-                        name: "T_Richieste_Oggetti.rateazione"
+                        name: "T_Richieste_Oggetti.rateazione",
+                        type: "select",
+                        options: [
+                            "Oraria",
+                            "Giornaliera",
+                            "Settimanale",
+                            "Mensile",
+                            "Bimestrale",
+                            "Semestrale",
+                            "Annuale",
+                            "Biennale"
+                        ]
                     },
                     {
                         label: "Numero Rate:",
                         name: "T_Richieste_Oggetti.numero_rate"
+                    },
+                    {
+                        label: "Inizio:",
+                        name: "T_Richieste_Oggetti.inizio",
+                        type:       "datetime",
+                    },
+                    {
+                        label: "Fine:",
+                        name: "T_Richieste_Oggetti.fine",
+                        type:       "datetime",
                     },
                     {
                         label: "Importo Unitario:",
@@ -51,19 +77,38 @@ $/*
                 ]
             });
 
+            editor2.dependent(['T_Richieste_Oggetti.importo_unitario', 'T_Richieste_Oggetti.numero_rate'], function (val, data, callback) {
+                editor2.field('T_Richieste_Oggetti.importo').set(data.values['T_Richieste_Oggetti.importo_unitario'] * data.values['T_Richieste_Oggetti.numero_rate']);
+                callback(true);
+            });
+            editor2.dependent(['T_Richieste_Oggetti.importo', 'T_Richieste_Oggetti.iva'], function (val, data, callback) {
+                editor2.field('T_Richieste_Oggetti.totale').set(data.values['T_Richieste_Oggetti.importo'] * (1 + data.values['T_Richieste_Oggetti.iva'] / 100));
+                callback(true);
+            });
+
+            editor2.on('initCreate', function () {
+                editor2.field('T_Richieste_Oggetti.tipo').val("Servizio");
+                editor2.field('T_Richieste_Oggetti.id_richiesta').val(parent.ID_RICHIESTA);
+            });
+           
 
             var editor = new $.fn.dataTable.Editor({
                 ajax: 'scripts/crs4-richieste-oggetti.php',
                 table: '#T_Richieste_Oggetti',
                 fields: [
                     {
-                        label: "Descrizione:",
+                        label: "Id Richiesta:",
                         name: "T_Richieste_Oggetti.id_richiesta",
                         type: "hidden"
                     },
                     {
                         label: "Descrizione:",
                         name: "T_Richieste_Oggetti.descrizione"
+                    },
+                    {
+                        label: "Tipo:",
+                        name: "T_Richieste_Oggetti.tipo",
+                        type: "hidden"
                     },
                     {
                         label: "Quantità:",
@@ -114,6 +159,11 @@ $/*
                 editor.field('T_Richieste_Oggetti.id_richiesta').val(parent.ID_RICHIESTA);
             });
 
+            editor.on('initCreate', function () {
+                //alert(parent.ID_RICHIESTA);
+                editor.field('T_Richieste_Oggetti.tipo').val("Bene");
+            });
+
 
             // Activate an inline edit on click of a table cell
             $('#T_Richieste_Oggetti').on('click', 'tbody td:not(:first-child)', function (e) {
@@ -148,13 +198,32 @@ $/*
                         visible: false,
                         // searchable: true,
                     },
-
+                    {
+                        data: "T_Richieste_Oggetti.tipo",
+                        width: "50%",
+                    },
                     {
                         data: "T_Richieste_Oggetti.descrizione",
                         width: "50%",
                     },
                     {
                         data: "T_Richieste_Oggetti.quantita",
+                        width: "2%",
+                    },
+                    {
+                        data: "T_Richieste_Oggetti.numero_rate",
+                        width: "2%",
+                    },
+                    {
+                        data: "T_Richieste_Oggetti.rateazione",
+                        width: "2%",
+                    },
+                    {
+                        data: "T_Richieste_Oggetti.inizio",
+                        width: "2%",
+                    },
+                    {
+                        data: "T_Richieste_Oggetti.fine",
                         width: "2%",
                     },
                     {
@@ -208,17 +277,18 @@ $/*
                 buttons: [
                     { extend: 'create', editor: editor, text: 'Nuovo Bene'},
                     { extend: 'create', editor: editor2, text: 'Nuovo Servizio'},
-                    { extend: 'edit', editor: editor },
+                    { extend: 'edit', editor: editor, text: 'Modifica Bene'},
+                    { extend: 'edit', editor: editor2, text: 'Modifica Servizio'},
                     { extend: 'remove', editor: editor },
 
-                    {
-                        text: 'Trasforma in ordine',
-                        action: function (e, dt, node, config) {
-                            command = "create_order";
-                            options = parent.ID_RICHIESTA;
-                            this.ajax.reload();
-                        }
-                    },
+                    // {
+                    //     text: 'Trasforma in ordine',
+                    //     action: function (e, dt, node, config) {
+                    //         command = "create_order";
+                    //         options = parent.ID_RICHIESTA;
+                    //         this.ajax.reload();
+                    //     }
+                    // },
 
                     {
                         extend: 'pdfHtml5', editor: editor,
@@ -226,6 +296,7 @@ $/*
                         title: "Richiesta di acquisto",
                         footer: true,
                         customize: function (doc) {
+                            $("#servizi_button").trigger("click");
                             var r = parent.richiesta[0];
                             console.log(r);
                             var stsc = '[   ]';
@@ -369,7 +440,7 @@ $/*
                                 }
 
                             });
-
+                            console.log(doc);
 
                         }
 
@@ -377,6 +448,8 @@ $/*
                     }
                 ]
             });
+
+           
         });
 
     }(jQuery));

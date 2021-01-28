@@ -38,7 +38,10 @@ $crs4 = new Crs4("Richieste", $db, $editor);
 		Field::inst( 'T_Richieste_Oggetti.importo_unitario' ),
 		Field::inst( 'T_Richieste_Oggetti.importo' ),
 		Field::inst( 'T_Richieste_Oggetti.iva' ),
-		Field::inst( 'T_Richieste_Oggetti.totale' )
+		Field::inst( 'T_Richieste_Oggetti.totale' ),
+		Field::inst( 'T_Richieste_Oggetti.inizio' ),
+		Field::inst( 'T_Richieste_Oggetti.fine' ),
+		
 	);
 
 	$editor->process( $_POST )
