@@ -166,27 +166,27 @@ $(function () {
             { extend: "create", editor: editornew },
             { extend: "edit",   editor: editor },
             { extend: "remove", editor: editor },
-            { extend: "selectedSingle", 
-              text: 'Mostra Beni', 
-              action: function ( e, dt, node, config ) {
-                var id = dt.row( { selected: true } ).data().T_Ordini.Id_Ordine;
-                parent.ID_ORDINI = id;
+            // { extend: "selectedSingle", 
+            //   text: 'Mostra Beni', 
+            //   action: function ( e, dt, node, config ) {
+            //     var id = dt.row( { selected: true } ).data().T_Ordini.Id_Ordine;
+            //     parent.ID_ORDINI = id;
                 
 
-                var df = $('#T_Dati_Fisc').DataTable();
-                df.columns(13).search(id); 
-                df.draw(); 
+            //     var df = $('#T_Dati_Fisc').DataTable();
+            //     df.columns(13).search(id); 
+            //     df.draw(); 
 
-                var fatt = $('#T_Fatture').DataTable();
-                fatt.columns(10).search(id);
-                fatt.draw();
+            //     var fatt = $('#T_Fatture').DataTable();
+            //     fatt.column('id_ordine:name').search(id);
+            //     fatt.draw();
 
-                var bolle = $('#T_Bolle').DataTable();
-                bolle.columns(3).search(id);
-                bolle.draw();
+            //     var bolle = $('#T_Bolle').DataTable();
+            //     bolle.columns(3).search(id);
+            //     bolle.draw();
 
-                }
-            }
+            //     }
+            // }
         ]
 
 
@@ -202,19 +202,23 @@ $(function () {
         if ( type === 'row' ) {
             var data = ordini.rows( indexes ).data();
             var id = data[0].T_Ordini.Id_Ordine;
-            
+            alert(id);
             parent.ID_ORDINI = id;
 
+            var og = $('#T_Richieste_Oggetti').DataTable();
+            og.column('id_ordine:name').search(id); 
+            og.draw(); 
+
             var df = $('#T_Dati_Fisc').DataTable();
-            df.columns(11).search(id); 
+            df.column('id_ordine:name').search(id); 
             df.draw(); 
 
             var fatt = $('#T_Fatture').DataTable();
-            fatt.columns(11).search(id);
+            fatt.column('id_ordine:name').search(id);
             fatt.draw();
 
             var bolle = $('#T_Bolle').DataTable();
-            bolle.columns(4).search(id);
+            bolle.column('id_ordine:name').search(id);
             bolle.draw();
         }
     } );

@@ -106,7 +106,8 @@ $(document).ready(function() {
 				"data": "T_Fatture.nascosto"
 			},
 			{
-				"data": "T_Fatture.id_ordine"
+				"data": "T_Fatture.id_ordine",
+				name: "id_ordine"
 			}
 		],
 		select: true,
@@ -124,31 +125,16 @@ $(document).ready(function() {
 			var id_fattura = data[0].T_Fatture.id_fattura;
 			parent.ID_FATTURA = id_fattura;
 			var df = $('#T_Dati_Fisc').DataTable();
-
-			var v = df.columns().search( '' ).columns( 8)
-			.search( id_fattura )
-			.draw();
-
-			// var idx = -1;
-			// var filteredData = df
-			// .column( 11 )
-			// .data()
-			// .filter( function ( value, index ) {
-			// 	if( value == id_fattura) idx = index;
-			// } );
-			// df.row(idx).nodes().to$()      // Convert to a jQuery object
-			// .toggleClass( 'crs4-highlight' );
-
-			// console.log(df.row(idx).nodes().to$());
+			var v = df.columns().search( '' ).column('id_fattura:name').search( id_fattura ).draw();
 	
 		}
 	} );
 	fatture.on( 'deselect', function ( e, dt, type, indexes ) {
 		if ( type === 'row' ) {
-			
+			var id = parent.ID_ORDINI;
+			alert(id);
 			var df = $('#T_Dati_Fisc').DataTable();
-			var v = df.columns().search( '' )
-			.draw();
+			var v = df.columns().search( '' ).column('id_ordine:name').search(id).draw();
 	
 		}
 	} );

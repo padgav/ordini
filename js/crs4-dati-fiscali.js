@@ -152,13 +152,15 @@ $(document).ready(function() {
 				render: $.fn.dataTable.render.number( '.', ',', 0, 'L. ' )
 			},
 			{
-				"data": "id_fattura"
+				"data": "id_fattura",
+				name: "id_fattura"
 			},
 			{
 				"data": "id_bolla"
 			},
 			{
-				"data": "id_ordine"
+				"data": "id_ordine",
+				name: "id_ordine"
 			},
 			{
 				"data": "id_bene"

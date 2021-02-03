@@ -53,7 +53,8 @@ $(document).ready(function() {
 				"data": "id_fornitore"
 			},
 			{
-				"data": "id_ordine"
+				"data": "id_ordine",
+				name: "id_ordine"
 			}
 		],
 		select: true,

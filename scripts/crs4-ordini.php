@@ -86,23 +86,33 @@ Editor::inst( $db, 'T_Ordini', 'T_Ordini.ID_Ordine' )
         Field::inst( 'T_Ordini.Note' )
         
     )
+    ->on( 'postCreate', function ( $editor, $id, $values, $row) {
+        $nrichiesta = $values["T_Ordini"]["id_richiesta"];
+        $editor->db()
+        ->query('update', 'T_Richieste_Oggetti')
+        ->set( 'T_Richieste_Oggetti.id_ordine', $id)
+        ->where('id', $nrichiesta )
+        ->exec();
+    })
     ->on( 'preCreate', function ( $editor, $values ) {
 
-
+        
+       
         $nrichiesta = $values["T_Ordini"]["id_richiesta"];
 
+        //aggiorna lo stato della richiesta in "Ordine"
+        $editor->db()
+        ->query('update', 'T_Richieste')
+        ->set( 'T_Richieste.id_stato_richiesta', "Ordine")
+        ->where('id', $nrichiesta )
+        ->exec();
+
+
+         //Recupera i dati della richiesta per copiarli nell'ordine
         $result = $editor->db()->select("T_Richieste", ['*'] , function($q) use ( $nrichiesta )
 		{
 			$q->where('T_Richieste.id', $nrichiesta, '=');
 		})->fetchAll();
-
-
-        $editor->db()
-            ->query('update', 'T_Richieste')
-            ->set( 'T_Richieste.id_stato_richiesta', "Ordine")
-            ->where('id', $nrichiesta )
-            ->exec();
-
         
 		foreach ($result as $value){
             //echo json_encode($value);
@@ -151,22 +161,20 @@ Editor::inst( $db, 'T_Ordini', 'T_Ordini.ID_Ordine' )
 			$q->where('T_Richieste_Oggetti.id_richiesta', $nrichiesta, '=');
 		})->fetchAll();
 
-        foreach ($result as $value){
-            $editor->db()
-            ->query('insert', 'T_Dati_Fisc')
-            ->set(  array( 'T_Dati_Fisc.descrizione_bene' => $value['descrizione'],   
-                            'T_Dati_Fisc.qta_ordine' => $value['quantita'],
-                            'T_Dati_Fisc.imp_ordine' => $value['importo_unitario']
-            ))  
-            ->exec();
-            //id_richiesta descrizione quantita importo_unitario importo iva totale numero_rate rateazione inizio fine
+        // foreach ($result as $value){
+        //     $editor->db()
+        //     ->query('insert', 'T_Dati_Fisc')
+        //     ->set(  array( 'T_Dati_Fisc.descrizione_bene' => $value['descrizione'],   
+        //                     'T_Dati_Fisc.qta_ordine' => $value['quantita'],
+        //                     'T_Dati_Fisc.imp_ordine' => $value['importo_unitario']
+        //     ))  
+        //     ->exec();
+        //     //id_richiesta descrizione quantita importo_unitario importo iva totale numero_rate rateazione inizio fine
 
-            // --       descrizione_bene qta_ordine imp_ordine 
-        }
+        //     // --       descrizione_bene qta_ordine imp_ordine 
+        // }
 
         
-
-
         //Genera numero d'ordine
         $year = date("Y");
         $a = $editor->db()->raw()->exec('SELECT MAX(N_Ordine) as n FROM T_Ordini where Anno_Ordine = ' . $year )->fetch();

@@ -26,6 +26,7 @@ $crs4 = new Crs4("Richieste", $db, $editor);
 // if($_POST["cmd"] == "create_order"){
 // 	$id_richiesta = $_POST["opt"];
 // }
+//print_r($_POST);
 
 	$editor->fields(
 		Field::inst( 'T_Richieste_Oggetti.id_richiesta' ),
@@ -42,6 +43,7 @@ $crs4 = new Crs4("Richieste", $db, $editor);
 		Field::inst( 'T_Richieste_Oggetti.totale' ),
 		Field::inst( 'T_Richieste_Oggetti.inizio' ),
 		Field::inst( 'T_Richieste_Oggetti.fine' ),
+		Field::inst( 'T_Richieste_Oggetti.id_ordine' ),
 		
 	);
 
