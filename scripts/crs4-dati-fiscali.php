@@ -23,42 +23,43 @@ use
 // The following statement can be removed after the first run (i.e. the database
 // table has been created). It is a good idea to do this to help improve
 // performance.
-$db->sql( "CREATE TABLE IF NOT EXISTS `T_Dati_Fisc` (
-	`ID_Dati_Fisc` int(10) NOT NULL auto_increment,
-	`seq_ord` datetime,
-	`seq_ord_old` numeric(9,2),
-	`id_record` numeric(9,2),
-	`descrizione_bene_ord` varchar(255),
-	`descrizione_bene` varchar(255),
-	`qta_ordine_orig` numeric(9,2),
-	`qta_ordine` numeric(9,2),
-	`qta_bolla` numeric(9,2),
-	`qta_fattura` numeric(9,2),
-	`imp_ordine` numeric(9,2),
-	`imp_fattura` numeric(9,2),
-	`id_fattura` numeric(9,2),
-	`id_bolla` numeric(9,2),
-	`id_ordine` numeric(9,2),
-	`id_bene` numeric(9,2),
-	`id_dati_fisc_proven` numeric(9,2),
-	`inventariato` numeric(9,2),
-	`id_dismissione` numeric(9,2),
-	`id_categoria` numeric(9,2),
-	`id_marca` numeric(9,2),
-	`tipo` varchar(255),
-	`modello` varchar(255),
-	`matricola` varchar(255),
-	`id_iva` numeric(9,2),
-	`sc_data` date,
-	`e_scadenza` numeric(9,2),
-	`ras` numeric(9,2),
-	PRIMARY KEY( `ID_Dati_Fisc` )
-);" );
-$crs4 = new Crs4("Ordini", $db, $editor);
+// $db->sql( "CREATE TABLE IF NOT EXISTS `T_Dati_Fisc` (
+// 	`ID_Dati_Fisc` int(10) NOT NULL auto_increment,
+// 	`seq_ord` datetime,
+// 	`seq_ord_old` numeric(9,2),
+// 	`id_record` numeric(9,2),
+// 	`descrizione_bene_ord` varchar(255),
+// 	`descrizione_bene` varchar(255),
+// 	`qta_ordine_orig` numeric(9,2),
+// 	`qta_ordine` numeric(9,2),
+// 	`qta_bolla` numeric(9,2),
+// 	`qta_fattura` numeric(9,2),
+// 	`imp_ordine` numeric(9,2),
+// 	`imp_fattura` numeric(9,2),
+// 	`id_fattura` numeric(9,2),
+// 	`id_bolla` numeric(9,2),
+// 	`id_ordine` numeric(9,2),
+// 	`id_bene` numeric(9,2),
+// 	`id_dati_fisc_proven` numeric(9,2),
+// 	`inventariato` numeric(9,2),
+// 	`id_dismissione` numeric(9,2),
+// 	`id_categoria` numeric(9,2),
+// 	`id_marca` numeric(9,2),
+// 	`tipo` varchar(255),
+// 	`modello` varchar(255),
+// 	`matricola` varchar(255),
+// 	`id_iva` numeric(9,2),
+// 	`sc_data` date,
+// 	`e_scadenza` numeric(9,2),
+// 	`ras` numeric(9,2),
+// 	PRIMARY KEY( `ID_Dati_Fisc` )
+// );" );
+
 
 // Build our Editor instance and process the data coming from _POST
-Editor::inst( $db, 'T_Dati_Fisc', 'ID_Dati_Fisc' )
-	->fields(
+$editor = Editor::inst( $db, 'T_Dati_Fisc', 'ID_Dati_Fisc' );
+$crs4 = new Crs4("Ordini", $db, $editor);
+	$editor->fields(
 		Field::inst( 'seq_ord' )
 			->validator( Validate::dateFormat( 'Y-m-d H:i:s' ) )
 			->getFormatter( Format::datetime( 'Y-m-d H:i:s', 'Y-m-d H:i:s' ) )
