@@ -94,6 +94,7 @@ var USER;
     }
 
     function setFunctions(permessi){
+        console.log(permessi);
         permessi.map(function(item){
             $("#app"+item.id_applicazione).show();
         })
