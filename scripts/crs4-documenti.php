@@ -37,7 +37,7 @@ use
 $editor = Editor::inst( $db, 'T_Documenti', 'T_Documenti.id' );
 $crs4 = new Crs4("Documenti", $db, $editor);
 
-
+$myid = uniqid();
 
 	$editor->fields(
 		Field::inst( 'T_Documenti.owner' )
@@ -53,12 +53,19 @@ $crs4 = new Crs4("Documenti", $db, $editor);
 		Field::inst( 'T_Documenti.tipo' ),
 		
 		Field::inst( 'T_Documenti.file' )
-			->upload( Upload::inst( $_SERVER['DOCUMENT_ROOT'].'/uploads/__ID__.__EXTN__' ) 
+			->upload( Upload::inst( $_SERVER['DOCUMENT_ROOT'].'/uploads/'.  $myid  .'.__EXTN__' ) 
+			// ->upload(
+			// 	Upload::inst( function ( $file, $id ) {
+			// 		$myid = 'uniqid()';
+			// 		move_uploaded_file( $file['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/uploads/'.$myid.'__EXTN__' );
+			// 		return $myid;
+			// 	} )
 			->db( 'T_Files', 'id', array(
                 'filename' => Upload::DB_FILE_NAME,
 				'filesize' => Upload::DB_FILE_SIZE,
 				'filetype' => Upload::DB_CONTENT_TYPE,
 				'web_path' => Upload::DB_WEB_PATH
+				//'web_path' => $_SERVER['DOCUMENT_ROOT'].'/uploads/'.$id
 			) )
 			)
     		->setFormatter( 'Format::nullEmpty' )
