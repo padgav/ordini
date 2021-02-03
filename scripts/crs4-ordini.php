@@ -25,8 +25,9 @@ use
     
 
 // Build our Editor instance and process the data coming from _POST
-Editor::inst( $db, 'T_Ordini', 'T_Ordini.ID_Ordine' )
-	->fields(
+$editor = Editor::inst( $db, 'T_Ordini', 'T_Ordini.ID_Ordine' );
+$crs4 = new Crs4("Fornitori", $db, $editor);
+$editor->fields(
         Field::inst( 'T_Ordini.Id_Ordine' ),
 
 
