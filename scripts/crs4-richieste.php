@@ -93,7 +93,7 @@ $crs4 = new Crs4("Richieste", $db, $editor);
 		Field::inst( 'T_Progetti.acronimo' ),
 		Field::inst( 'T_Progetti.cup' ),
 		Field::inst( 'T_Progetti.finanziamento' ),
-		Field::inst( 'T_Richieste.id' ),
+		Field::inst( 'T_Richieste.id' )
 		)
 		->join(
 			Mjoin::inst( 'T_Files' )
