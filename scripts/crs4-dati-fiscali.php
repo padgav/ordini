@@ -53,6 +53,7 @@ $db->sql( "CREATE TABLE IF NOT EXISTS `T_Dati_Fisc` (
 	`ras` numeric(9,2),
 	PRIMARY KEY( `ID_Dati_Fisc` )
 );" );
+$crs4 = new Crs4("Ordini", $db, $editor);
 
 // Build our Editor instance and process the data coming from _POST
 Editor::inst( $db, 'T_Dati_Fisc', 'ID_Dati_Fisc' )
