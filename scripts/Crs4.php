@@ -15,6 +15,7 @@ class Crs4  {
 
     function __construct( $flabel , $db, $editor){
         $db->sql( 'set names utf8' );
+        $db->sql( 'SET lower_case_table_names=1' );
         session_start();
         $post = "";
         $app = Editor::inst( $db, 'T_Applicazioni', 'id' )->fields(
