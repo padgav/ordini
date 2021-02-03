@@ -19,7 +19,7 @@ class Crs4  {
         $post = "";
         $app = Editor::inst( $db, 'T_Applicazioni', 'id' )->fields(
            // Field::inst( 'T_Applicazioni.applicazione' ),
-            Field::inst( 'T_Applicazioni.id' ),
+            Field::inst( 'T_Applicazioni.id' )
           )
             ->where( 'applicazione', $flabel)
             ->process($post)->data();
