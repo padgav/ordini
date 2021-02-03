@@ -7,6 +7,7 @@
 
 // DataTables PHP library and database connection
 include( "lib/DataTables.php" );
+include( "Crs4.php" );
 
 // Alias Editor classes so they are easy to use
 use
