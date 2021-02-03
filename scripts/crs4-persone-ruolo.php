@@ -57,9 +57,7 @@ $editor
 		->label( 'Ruolo' )
 		)
 		->validator( Validate::dbValues() ),
-		Field::inst( 'T_Ruoli.ruolo' ),
-
-
+		Field::inst( 'T_Ruoli.ruolo' )
 
 	)
 	->leftJoin( 'V_People_all', 'V_People_all.ID', '=', 'T_Persone_Ruolo.id_persona' )
