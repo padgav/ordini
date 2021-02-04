@@ -61,6 +61,24 @@ $editor->on( 'preCreate', function ( $editor, $values ) {
 		$editor
 		->field( 'T_Comodato.numero_serie' )
 		->setValue($numeroserie);
+
+		//GAMMA
+		if($descrizione == ""){
+			$ninv = '%'.$ninv.'%';
+			$result = $editor->db()->select("T_Beni_Gamma", ['*'] , function($q) use ( $ninv )
+			{
+				$q->where('T_Beni_Gamma.numero_inventario', $ninv, 'LIKE');
+			})->fetchAll();
+
+			foreach ($result as $value){
+				//echo json_encode($value);
+				$descrizione = $descrizione . " " . $value["descrizione"];
+				$valore = $valore + $value["importo"] ;
+				//$numeroserie = $numeroserie ." ". $value["Matricola"];
+			}
+		}
+
+
 	}
 	elseif($nserie != ""){
 		$result = $editor->db()->select("V_Beni_Dati_Fisc", ['*'] , function($q) use ( $nserie )
