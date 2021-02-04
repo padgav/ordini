@@ -16,6 +16,9 @@ class Crs4  {
     function __construct( $flabel , $db, $editor){
         $db->sql( 'set names utf8' );
         session_start();
+        $this->_init();
+
+
         $post = "";
         $app = Editor::inst( $db, 'T_Applicazioni', 'id' )->fields(
            // Field::inst( 'T_Applicazioni.applicazione' ),
@@ -38,7 +41,7 @@ class Crs4  {
         
         if (!isset($_SESSION['userid'])) {
             echo json_encode( array( 
-                "error" => "Utente non autorizzato",
+                "error" => "Utente non autorizzato. Ricaricare la pagina",
                 "data" => array()
             ) );
             exit(0);

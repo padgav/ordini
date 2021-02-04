@@ -15,12 +15,13 @@ use
 
 error_reporting(E_ERROR | E_PARSE);
 $_VARS = array_merge($_POST,$_GET);
-$cmd = $_VARS["cmd"];
+
 $out =[];
 session_start();
 
 
-if($cmd == "login"){
+if(isset($_VARS['cmd']) && $_VARS['cmd'] == 'login'){
+
     $user = $_VARS["username"];
     $password = $_VARS["password"];
     
@@ -33,7 +34,7 @@ if($cmd == "login"){
             'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
             'method'  => 'POST',
             'content' => http_build_query($data)
-        ),  
+        ),    
         "ssl"=>array(
             "verify_peer"=>false,
             "verify_peer_name"=>false,
@@ -64,7 +65,8 @@ if($cmd == "login"){
         exit(0);
   } 
 }
-else if($cmd == "getuserinfo"){
+else if(isset($_VARS['cmd']) && $_VARS['cmd'] == 'getuserinfo'){
+
 
   //TBD permessi gruppo
 
@@ -104,6 +106,16 @@ else if($cmd == "getuserinfo"){
 
 ////////////
 
+  if( !isset($_SESSION["userid"])){
+    $out["status"]["code"] = 102;
+    $out["status"]["message"] = "Login Error";
+    echo json_encode($out);
+    exit(0);
+  }
+  else{
+
+  
+
   $out["status"]["code"] = 101;
   $out["status"]["message"] = "Login Successful";
   $out["data"] = array("userid" => $_SESSION["userid"], "nome" => $_SESSION["nome"],  "cognome" => $_SESSION["cognome"]);
@@ -142,8 +154,9 @@ foreach ($result2["data"] as $p) {
   exit(0);
 
 }
+}
 
-else if($cmd == "logout"){
+else if(isset($_VARS['cmd']) && $_VARS['cmd'] == 'logout'){
   $out["status"]["code"] = 101;
   $out["status"]["message"] = "Logout Successful";
   $_SESSION = array();
