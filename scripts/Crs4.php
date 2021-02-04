@@ -16,7 +16,7 @@ class Crs4  {
     function __construct( $flabel , $db, $editor){
         $db->sql( 'set names utf8' );
         session_start();
-        $this->_init();
+        //$this->_init();
 
 
         $post = "";
@@ -38,7 +38,6 @@ class Crs4  {
     }
 
     private function _init(){
-        
         if (!isset($_SESSION['userid'])) {
             echo json_encode( array( 
                 "error" => "Utente non autorizzato. Ricaricare la pagina",
