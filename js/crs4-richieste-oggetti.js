@@ -241,7 +241,7 @@ $/*
                     },
                     {
                         data: "T_Richieste_Oggetti.descrizione",
-                        width: "50%",
+                        width: "40%",
                     },
                     {
                         data: "T_Richieste_Oggetti.quantita",
@@ -280,7 +280,7 @@ $/*
                     {
                         data: "T_Richieste_Oggetti.totale",
                         render: $.fn.dataTable.render.number('.', ',', 2, '€ '),
-                        width: "30%",
+                        width: "40%",
                     }
                 ],
                 select: true,
@@ -298,7 +298,7 @@ $/*
 
                     // Total over all pages
                     total = api
-                        .column(6)
+                        .column(13)
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
@@ -306,7 +306,7 @@ $/*
 
                     // Update footer
                     total =  total.toFixed(2);
-                    $(api.column(6).footer()).html('€ ' + total);
+                    $(api.column(13).footer()).html('€ ' + total);
                 },
 
 
@@ -331,6 +331,9 @@ $/*
                         extend: 'pdfHtml5', editor: editor,
                         text: 'Visualizza Richiesta',
                         title: "Richiesta di acquisto",
+                        exportOptions: {
+                            columns: [3,4,5,6,7,8,9,10,11,12,13]
+                        },
                         footer: true,
                         customize: function (doc) {
                             var r = parent.richiesta[0];

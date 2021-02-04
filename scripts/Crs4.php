@@ -40,7 +40,7 @@ class Crs4  {
     private function _init(){
         if (!isset($_SESSION['userid'])) {
             echo json_encode( array( 
-                "error" => "Utente non autorizzato. Ricaricare la pagina",
+                "error" => "Utente non autorizzato. Ricaricare la pagina.",
                 "data" => array()
             ) );
             exit(0);

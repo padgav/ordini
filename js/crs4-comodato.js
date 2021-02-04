@@ -83,9 +83,9 @@ $/*
                 select: true,
                 lengthChange: true,
                 buttons: [
-                    { extend: 'create', editor: editor, text:'Aggiungi bene' },
-                    { extend: 'edit', editor: editor, text:'Modifica' },
-                    { extend: 'remove', editor: editor, text:'Elimina' },
+                    { extend: 'create', editor: editor, text: 'Aggiungi bene' },
+                    { extend: 'edit', editor: editor, text: 'Modifica' },
+                    { extend: 'remove', editor: editor, text: 'Elimina' },
                     { extend: 'pdf', editor: editor, 
                     text: 'Stampa Contratto',
                     title: "CONTRATTO DI COMODATO D’USO GRATUITO",
