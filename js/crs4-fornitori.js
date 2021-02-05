@@ -111,7 +111,9 @@ $/*
                 paging: true,
                 fixedColumns: true,
                 dom: 'Blfrtip',
-                ajax: 'scripts/crs4-fornitori.php',
+                ajax: {
+                    url: 'scripts/crs4-fornitori.php',
+                },
                 columns: [
                     {
                         "data": "T_Fornitori.fornitore",
