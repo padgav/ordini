@@ -43,7 +43,7 @@ $crs4 = new Crs4("Richieste", $db, $editor);
 		Field::inst( 'T_Richieste_Oggetti.totale' ),
 		Field::inst( 'T_Richieste_Oggetti.inizio' ),
 		Field::inst( 'T_Richieste_Oggetti.fine' ),
-		Field::inst( 'T_Richieste_Oggetti.id_ordine' ),
+		Field::inst( 'T_Richieste_Oggetti.id_ordine' )
 		
 	);
 
