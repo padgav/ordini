@@ -128,11 +128,18 @@
 		<div class="grid_container">
 				<div class="grid_12">
 						<div class="widget_wrap">
-							<div class="widget_top">
-								<span class="h_icon documents"></span>
-								<h6>Istruzioni</h6>
-							</div>
-							<div class="widget_content">
+								<div class="widget_top">
+										<div class="widget_top_left">
+												<span class="h_icon documents"></span>
+												<h6>Istruzioni</h6>
+											</div>
+											<div class="widget_top_right">
+												<a onclick='$("#info").toggle(); $("span:first", this).toggleClass("go_full_screen go_back_from_full_screen")' class="toggle_link">
+													<span class="util_icon close go_full_screen"></span>
+												</a>
+											</div>
+								</div>
+							<div id="info" class="widget_content">
 								<div class="page_content">
 									<div class="grid_12 post_preview">
 										

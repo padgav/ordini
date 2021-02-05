@@ -50,6 +50,35 @@ iframe{
 
 
 
+
 #crs4-oggetti{
   visibility: hidden;
+}
+
+#left_bar{
+  position: fixed;
+  top: 60px;
+  left:0;
+  z-index: 9999;
+}
+
+#container{
+  padding-top:60px;
+  margin-left: 270px;
+}
+#header{
+  position:fixed;
+  width: 100%;
+}
+
+
+.widget_top_left { float: left; ;}
+.widget_top_right { text-align: right; float: right;}
+.util_icon { 
+  margin: 8px;
+  height: 20px;
+    width: 20px;
+    display: block;
+    /* position: absolute; */
+    background: url(../images/sprite-icons/icon-black.png) no-repeat;
 }
