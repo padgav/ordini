@@ -92,9 +92,9 @@ $/*
                 select: true,
                 lengthChange: true,
                 buttons: [
-                    { extend: 'create', editor: editor},
-                    { extend: 'edit', editor: editor },
-                    { extend: 'remove', editor: editor },
+                    { extend: 'create', editor: editor, text: 'Nuovo documento'},
+                    { extend: 'edit', editor: editor, text: 'Modifica' },
+                    { extend: 'remove', editor: editor, text: 'Elimina' },
                     
                 ]
             });
