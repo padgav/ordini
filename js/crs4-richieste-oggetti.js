@@ -265,12 +265,12 @@ $/*
                     },
                     {
                         data: "T_Richieste_Oggetti.importo_unitario",
-                        render: $.fn.dataTable.render.number('.', ',', 2, '€ '),
+                        render: $.fn.dataTable.render.number('.', ',', 2, '€ '),
                         width: "10%",
                     },
                     {
                         data: "T_Richieste_Oggetti.importo",
-                        render: $.fn.dataTable.render.number('.', ',', 2, '€ '),
+                        render: $.fn.dataTable.render.number('.', ',', 2, '€ '),
                         width: "10%",
                     },
                     {
@@ -279,7 +279,7 @@ $/*
                     },
                     {
                         data: "T_Richieste_Oggetti.totale",
-                        render: $.fn.dataTable.render.number('.', ',', 2, '€ '),
+                        render: $.fn.dataTable.render.number('.', ',', 2, '€ '),
                         width: "40%",
                     }
                 ],

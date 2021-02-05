@@ -16,15 +16,30 @@ $/*
         
 
         $(document).ready(function () {
+
+            
+            editornew = new $.fn.dataTable.Editor({
+                ajax: 'scripts/crs4-comodato.php',
+                table: '#T_Comodato',
+                fields: [
+                    
+                    {
+                        "label": "Numero Inventario:",
+                        "name": "T_Comodato.numero_inventario"
+                    },
+                    {
+                        "label": "Numero Serie:",
+                        "name": "T_Comodato.numero_serie"
+                    }
+        
+                ]
+            });
+
             editor = new $.fn.dataTable.Editor({
                 ajax: 'scripts/crs4-comodato.php',
                 table: '#T_Comodato',
                 fields: [
-                    // {
-                    //     "label": "Nome:",
-                    //     "name": "T_Comodato.owner",
-                    //     "type": "select"
-                    // },
+                    
                     {
                         "label": "Descrizione:",
                         "name": "T_Comodato.descrizione"
@@ -83,7 +98,7 @@ $/*
                 select: true,
                 lengthChange: true,
                 buttons: [
-                    { extend: 'create', editor: editor, text: 'Aggiungi bene' },
+                    { extend: 'create', editor: editornew, text: 'Aggiungi bene' },
                     { extend: 'edit', editor: editor, text: 'Modifica' },
                     { extend: 'remove', editor: editor, text: 'Elimina' },
                     { extend: 'pdf', editor: editor, 
