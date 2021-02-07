@@ -329,7 +329,7 @@ $/*
                                             searchable: true,
                                             orderable: true,
                                             search: {
-                                                value: 299,
+                                                value: parent.ID_Fornitore,
                                                 regex: false
                                             }
                                         },
@@ -359,18 +359,54 @@ $/*
                     {
                         extend: 'pdfHtml5', editor: editor,
                         text: 'Visualizza Ordine',
-                        title: "Ordine di acquisto",
+                        title: " ",
+                        exportOptions: {
+                            columns: [4,7,8,9,10,11,12,13]
+                        },
                         footer: true,
                         customize: function (doc) {
-                            var r = parent.ID_ORDINI;
-                          
-                           // if (r['T_Ordini']['soglia'] == "Sotto soglia comunitaria") stsc = '[X]';
+                            var r = parent.ordine[0];
                             
-                            console.log(doc.styles);
-                            doc.styles.header =  { fillColor: '#d3d3d3' };
+                            //console.log(doc.styles);
+                            doc.defaultStyle.fontSize = '9';
+                            doc.styles = {
+                                header: { fillColor: '#d3d3d3' },
+
+                                
+                                bold: {
+                                    bold: true
+                                },
+        
+                                title: {
+                                    fontSize: '16',
+                                    alignment: 'center'
+                                },   
+                              
+                                tableHeader: {
+                                //layout: "headerLineOnly",
+                                bold: true,
+                                fontSize: 9,
+                                    color: 'black',
+                                    fillColor: '#d3d3d3',
+                                alignment: 'center'
+                                },
+                                tableFooter: {
+                                    bold: true,
+                                    fontSize: 9,
+                                    color: 'black',
+                                    fillColor: '#d3d3d3',
+                                    alignment: 'center'
+                                },
+                                tableBodyEven: {
+                                    fontSize: 9
+                                },
+                                tableBodyOdd: {
+                                    fontSize: 9,
+                                },
+                            },
                             
                             doc.content.splice(0, 0, {
-                                margin: [0, 0, 0, 12],
+                                margin: [0, 0, 0, 0],
                                 alignment: 'left',
                                 width: 150,
                                 image: 'data:image/png;base64,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\
@@ -380,10 +416,69 @@ $/*
                             });
                            
                             doc.content.splice(2, 0, {
-                                margin: [300, 0, 0, 12],
-                                text: parent.fornitore.data[0].T_Fornitori.fornitore +  "\n" + parent.fornitore.data[0].T_Fornitori.indirizzo +
-                                "," + parent.fornitore.data[0].T_Fornitori.n_civico + " " + + parent.fornitore.data[0].T_Fornitori.citta +
+                                margin: [300, -70, 0, 0],
+                                text: "Spett.le\n" + parent.fornitore.data[0].T_Fornitori.fornitore +  "\n" + parent.fornitore.data[0].T_Fornitori.indirizzo +
+                                "," + parent.fornitore.data[0].T_Fornitori.n_civico + "\n" +  parent.fornitore.data[0].T_Fornitori.citta + "\n" + parent.fornitore.data[0].T_Fornitori.piva +
                                 ""
+                            });
+
+                            doc.content.splice(3, 0, {
+                                margin: [0, 10, 0, 12],
+                                layout: "noBorders",
+                                table: {
+                                    widths: ['25%', '75%'],
+                                    headerRows: 0,
+                                    body: [
+                                        // [{text: 'Oggetto', style:'header', colSpan: 4}, '', '', ''],
+                                        [{text: 'Oggetto:', style:'bold'}, r['T_Richieste']['oggetto']]
+                                        
+                                    ]
+                                }
+                            });
+                            doc.content.splice(4, 0, {
+                                margin: [0, 10, 0, 12],
+                                layout: "noBorders",
+                                table: {
+                                    widths: ['25%', '25%', '25%', '25%'],
+                                    headerRows: 0,
+                                    body: [
+                                        // [{text: 'Oggetto', style:'header', colSpan: 4}, '', '', ''],
+                                        [{text: 'CUP:', style:'bold'},  r['T_Progetti']['cup'], {text: 'CIG:', style:'bold'}, r['T_Richieste']['cig']],
+                                        
+                                    ]
+                                }
+                            });
+
+                            doc.content.splice(5, 0, {
+                                margin: [0, 0, 0, 12],
+                                text: " Con la presente desideriamo confermare l'ordine per il seguente materiale / servizi. \
+                                \nRicordiamo che ogni altra documentazione fiscale e/o amministrativa dovrà riportare il numero sopra indicato."
+                            });
+
+                            doc.content.splice(7, 0, {
+                                margin: [0, 12, 0, 12],
+                                layout: "noBorders",
+                                table: {
+                                    widths: ['25%', '25%', '25%', '25%'],
+                                    headerRows: 1,
+                                    body: [
+                                        [{text: 'Condizioni Generali:', style:'bold', colSpan: 4}, '', '', ''],
+                                        ['Resa:', 'C.R.S.4 S.R.L. UNINOMINALE', 'LOC. PISCINA MANNA EDIFICIO 1 SN PULA', 'CA'],
+                                        ['Imballo:', '' , 'Installazione/Montaggio' , ' '],
+                                        ['Pagamenti:', '30 GG DATA RIC .FATTURA'  , 'Consegna', ' '],
+                                        ['Garanzia:', ''  , 'Valuta:' ,'EURO €'],
+                                        [{text: 'Non si Accettano evasioni parziali di ordini:', style:'bold',colSpan: 4}, '' , '', ''],
+                                    ]
+                                }
+                            });
+
+
+                             doc.content.splice(8, 0, {
+                                margin: [0, 12, 0, 12],
+                                text: "Vi informiamo che possiamo accettare soltanto fatture elettroniche, trasmesse per il tramite dello SDI (Sistema di Interscambio). Non saranno pertanto, considerate valide le fatture emesse o trasmesse in forma cartacea, né potremo procedere al pagamento, neppure parziale, fino all'invio del documento in forma elettronica tramite SDI.\n\
+                                Il nostro codice univoco identificativo è: UFECZH\n\n\
+                                Per le fatture emesse dal 01/07/2017, la società Crs4 Srl Uninominale è soggetta a Split payment.\n\n\
+                                Il fornitore si obbliga a rispettare i contenuti e le prescrizioni previste nel Modello Organizzativo di Gestione e Controllo nonché nel Codice Etico del CRS4, predisposti in attuazione del decreto legislativo n. 231 del 2001 e s.m.i. e pubblicati sul sito internet www.crs4.it <http://www.crs4.it> "
                             });
                            
                             // doc.content.splice(2, 0, {
@@ -424,19 +519,7 @@ $/*
                             //         ]
                             //     }
                             // });
-                            // doc.content.splice(4, 0, {
-                            //     margin: [0, 0, 0, 12],
-                            //     layout: "noBorders",
-                            //     table: {
-                            //         widths: ['25%', '25%', '25%', '25%'],
-                            //         headerRows: 1,
-                            //         body: [
-                            //             [{text: 'Dati sul Progetto', style:'header', colSpan: 4}, '', '', ''],
-                            //             ['CDC:', r['T_Progetti']['cdc'], 'Acronimo:', r['T_Progetti']['acronimo']],
-                            //             ['Fonte di finanziamento:', r['T_Progetti']['finanziamento'], 'CUP:', r['T_Progetti']['cup']],
-                            //         ]
-                            //     }
-                            // });
+                            
                             // doc.content.splice(5, 0, {
                             //     margin: [0, 0, 0, 12],
                             //     layout: "noBorders",
@@ -449,20 +532,7 @@ $/*
                             //         ]
                             //     }
                             // });
-                            // doc.content.splice(6, 0, {
-                            //     margin: [0, 0, 0, 12],
-                            //     layout: "noBorders",
-                            //     table: {
-                            //         widths: ['25%', '25%', '25%', '25%'],
-                            //         headerRows: 1,
-                            //         body: [
-                            //             [{text: 'Dati sulla Richiesta', style:'header', colSpan: 4}, '', '', ''],
-                            //             ['Fornitura di:', r['T_Richieste']['oggetto'], '', ''],
-                            //             ['Imponibile:', r['T_Richieste']['imponibile'] + ' €' , 'IVA:', r['T_Richieste']['iva'] + ' €'],
-                            //             ['Mepa:', r['T_Richieste']['mepa'],'Prestazione di servizi:', r['T_Richieste']['prestazione_servizi']],
-                            //             ['Prodotti informatici:', r['T_Richieste']['prod_inf'], '', ''],
-                            //         ]
-                            //     }
+                            
 
                             // });
                             // doc.content.splice(7, 0, {

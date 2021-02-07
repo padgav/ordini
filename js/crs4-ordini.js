@@ -163,9 +163,9 @@ $(function () {
         select: true,
 
         buttons: [
-            { extend: "create", editor: editornew },
-            { extend: "edit",   editor: editor },
-            { extend: "remove", editor: editor },
+            { extend: "create", editor: editornew, text: "Nuovo da Richiesta" },
+            { extend: "edit",   editor: editor, text: "Modifica" },
+            { extend: "remove", editor: editor, text: "Elimina" },
             // { extend: "selectedSingle", 
             //   text: 'Mostra Beni', 
             //   action: function ( e, dt, node, config ) {
@@ -202,12 +202,17 @@ $(function () {
         if ( type === 'row' ) {
             var data = ordini.rows( indexes ).data();
             var id = data[0].T_Ordini.Id_Ordine;
-            alert(id);
+            parent.ordine = data
+            parent.ID_Fornitore = data[0].T_Ordini.ID_Fornitore;
             parent.ID_ORDINI = id;
 
             var og = $('#T_Richieste_Oggetti').DataTable();
             og.column('id_ordine:name').search(id); 
             og.draw(); 
+
+            var dfn = $('#T_Dati_Fiscali_New').DataTable();
+            dfn.column('id_ordine:name').search(id); 
+            dfn.draw(); 
 
             var df = $('#T_Dati_Fisc').DataTable();
             df.column('id_ordine:name').search(id); 

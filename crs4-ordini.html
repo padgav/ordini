@@ -124,6 +124,7 @@
 <script src="js/crs4-fatture.js"></script>
 <script src="js/crs4-bolle.js"></script>
 <script src="js/crs4-dati-fiscali.js"></script>
+<script src="js/crs4-dati-fiscali-new.js"></script>
 </head>
 <body id="theme-default" class="full_block">
 
@@ -262,6 +263,54 @@
 					<div class="widget_wrap">
 						<div class="widget_top">
 							<span class="h_icon money_2"></span>
+							<h6>Dati Fiscali (Nuovi)</h6>
+						</div>
+						<div class="widget_content">
+							<table class="display" id="T_Dati_Fiscali_New">
+							<thead>
+							<tr>
+									
+									<th>Descrizione Bene</th>
+									<th>Ordine</th>
+									<th>Quantità Ordine</th>
+									<th>Quantità</th>
+									<th>Numero rata</th>
+									<th>Importo Fattura</th>
+									<th>Fattura</th>
+									<th>Bolla</th>
+									<th>CIG</th>
+									<th>Tipo</th>
+									<th>Categoria</th>
+									<th>Inventario</th>
+									<th>Matricola</th>
+							</tr>
+							</thead>
+							<tfoot>
+							<tr>
+									
+									<th>Descrizione Bene</th>
+									<th>Ordine</th>
+									<th>Quantità Ordine</th>
+									<th>Quantità</th>
+									<th>Numero rata</th>
+									<th>Importo Fattura</th>
+									<th>Fattura</th>
+									<th>Bolla</th>
+									<th>CIG</th>
+									<th>Tipo</th>
+									<th>Categoria</th>
+									<th>Inventario</th>
+									<th>Matricola</th>
+							</tr>
+							</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			<!-- <div class="grid_12">
+					<div class="widget_wrap">
+						<div class="widget_top">
+							<span class="h_icon money_2"></span>
 							<h6>Dati Fiscali</h6>
 						</div>
 						<div class="widget_content">
@@ -329,10 +378,50 @@
 							</table>
 						</div>
 					</div>
+				</div> -->
+
+
+			<div class="grid_6">
+					<div class="widget_wrap">
+						<div class="widget_top">
+							<span class="h_icon truck"></span>
+							<h6>Bolle </h6>
+						</div>
+						<div class="widget_content">
+							<table id="T_Bolle" class="display data_editable">
+							<thead>
+							<tr>
+								<th>
+									Numero Bolla
+								</th>
+								<th>
+									Data
+								</th>
+								<th>
+									Ordine
+								</th>
+							</tr>
+							</thead>
+							
+							<tfoot>
+							<tr>
+								<th>
+									Numero Bolla
+								</th>
+								<th>
+									Data
+								</th>
+								<th>
+									Ordine
+								</th>
+							</tr>
+							</tfoot>
+							</table>
+						</div>
+					</div>
 				</div>
 
-
-			<div class="grid_12">
+			<div class="grid_6">
 				<div class="widget_wrap">
 					<div class="widget_top">
 						<span class="h_icon money_2"></span>
@@ -345,14 +434,7 @@
 						<tr>
 						<th>Prot_IVA</th>
 						<th>N_Fattura</th>
-						<th>Data_Reg_Fatt</th>
 						<th>Data_Fattura</th>
-						<th>N_Convenzione</th>
-						<th>ID_Fornitore</th>
-						<th>ID_St_Fatt</th>
-						<th>Cambio_Fattura</th>
-						<th>ID_Valuta</th>
-						<th>Nascosto</th>
 						<th>Ordine</th>
 						</tr>
 						</thead>
@@ -363,14 +445,7 @@
 						<tr>
 						<th>Prot_IVA</th>
 						<th>N_Fattura</th>
-						<th>Data_Reg_Fatt</th>
 						<th>Data_Fattura</th>
-						<th>N_Convenzione</th>
-						<th>ID_Fornitore</th>
-						<th>ID_St_Fatt</th>
-						<th>Cambio_Fattura</th>
-						<th>ID_Valuta</th>
-						<th>Nascosto</th>
 						<th>Ordine</th>
 						</tr>
 						</tfoot>
@@ -381,55 +456,6 @@
 
 
 
-			<div class="grid_12">
-				<div class="widget_wrap">
-					<div class="widget_top">
-						<span class="h_icon truck"></span>
-						<h6>Bolle </h6>
-					</div>
-					<div class="widget_content">
-						<table id="T_Bolle" class="display data_editable">
-						<thead>
-						<tr>
-							<th>
-								Numero Bolla
-							</th>
-							<th>
-								Data
-							</th>
-							<th>
-								Fornitore
-							</th>
-							<th>
-								Ordine
-							</th>
-						</tr>
-						</thead>
-						
-						<tfoot>
-						<tr>
-							<th>
-								Numero Bolla
-							</th>
-							<th>
-								Data
-							</th>
-							<th>
-								Fornitore
-							</th>
-							<th>
-								Ordine
-							</th>
-						</tr>
-						</tfoot>
-						</table>
-					</div>
-				</div>
-			</div>
-
-			
-			
-			
 		</div>
 		<span class="clear"></span>
 	</div>

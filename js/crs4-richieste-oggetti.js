@@ -123,8 +123,8 @@ $/*
                         type: "select",
                         options: [
                             "Bene Inventariabile",
-                            "Parte di bene Inventariabile",
-                            "Bene non inventariabile",
+                            "Parte di Bene Inventariabile",
+                            "Bene non Inventariabile",
                             "Materiale di consumo"
                         ]
                     },
@@ -316,7 +316,7 @@ $/*
                     { extend: 'create', editor: editor2, text: 'Nuovo Servizio'},
                     { extend: 'edit', editor: editor, text: 'Modifica Bene'},
                     { extend: 'edit', editor: editor2, text: 'Modifica Servizio'},
-                    { extend: 'remove', editor: editor },
+                    { extend: 'remove', editor: editor, text: "Elimina" },
 
                     // {
                     //     text: 'Trasforma in ordine',
@@ -336,6 +336,7 @@ $/*
                         },
                         footer: true,
                         customize: function (doc) {
+                           
                             var r = parent.richiesta[0];
                             console.log(r);
                             var stsc = '[   ]';
@@ -358,8 +359,38 @@ $/*
                             if (r['T_Richieste']['consip'] == "Si") consipsi = '[X]';
                             if (r['T_Richieste']['consip'] == "No") consipno = '[X]';
 
-                            console.log(doc.styles);
-                            doc.styles.header =  { fillColor: '#d3d3d3' };
+                            doc.defaultStyle.fontSize = '9';
+                            doc.styles = {
+                                header: { fillColor: '#d3d3d3' },
+        
+                                title: {
+                                    fontSize: '16',
+                                    alignment: 'center'
+                                },   
+                              
+                                tableHeader: {
+                                //layout: "headerLineOnly",
+                                bold: true,
+                                fontSize: 7,
+                                    color: 'black',
+                                    fillColor: '#d3d3d3',
+                                alignment: 'center'
+                                },
+                                tableFooter: {
+                                    bold: true,
+                                    fontSize: 7,
+                                    color: 'black',
+                                    fillColor: '#d3d3d3',
+                                    alignment: 'center'
+                                },
+                                tableBodyEven: {
+                                    fontSize: 7
+                                },
+                                tableBodyOdd: {
+                                    fontSize: 7,
+                                    fillColor: '#f3f3f3'
+                                },
+                            },
                             
                             doc.content.splice(0, 0, {
                                 margin: [0, 0, 0, 12],

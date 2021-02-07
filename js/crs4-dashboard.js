@@ -76,8 +76,8 @@ var USER;
         $(".user_name").html(info.data.nome + " " + info.data.cognome);
         USER = info.data.nome + " " + info.data.cognome;
         setFunctions(info.permessi);
-    
     }
+    
     function getUserInfo(){
         $.ajax({
             url: 'scripts/crs4-login.php',

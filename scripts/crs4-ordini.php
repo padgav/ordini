@@ -26,11 +26,10 @@ use
 
 // Build our Editor instance and process the data coming from _POST
 $editor = Editor::inst( $db, 'T_Ordini', 'T_Ordini.ID_Ordine' );
-$crs4 = new Crs4("Fornitori", $db, $editor);
+$crs4 = new Crs4("Ordini", $db, $editor);
 $editor->fields(
         Field::inst( 'T_Ordini.Id_Ordine' ),
-
-
+        Field::inst( 'T_Ordini.owner' ),
 
         Field::inst( 'T_Ordini.id_richiesta' )
         ->options( Options::inst()
@@ -84,7 +83,16 @@ $editor->fields(
 
         Field::inst( 'T_Ordini.ID_St_Ord' ), 
         Field::inst( 'T_Ordini.D_Garanzia' ), 
-        Field::inst( 'T_Ordini.Note' )
+        Field::inst( 'T_Ordini.Note' ),
+        Field::inst( 'T_Progetti.cdc' ),
+		Field::inst( 'T_Progetti.cup' ),
+        Field::inst( 'T_Progetti.finanziamento' ),
+        Field::inst( 'T_Richieste.oggetto' ),
+		Field::inst( 'T_Richieste.imponibile' ),
+		Field::inst( 'T_Richieste.iva' ),
+		Field::inst( 'T_Richieste.totale' ),
+        Field::inst( 'T_Richieste.note' ),
+        Field::inst( 'T_Richieste.cig' ),
         
     )
     ->on( 'postCreate', function ( $editor, $id, $values, $row) {
@@ -92,8 +100,82 @@ $editor->fields(
         $editor->db()
         ->query('update', 'T_Richieste_Oggetti')
         ->set( 'T_Richieste_Oggetti.id_ordine', $id)
-        ->where('id', $nrichiesta )
+        ->where('id_richiesta', $nrichiesta )
         ->exec();
+
+
+        //copia i beni dalla tabella T_Richieste_Oggetti a T_Dati_Fiscali_New
+        $result = $editor->db()->select("T_Richieste_Oggetti", ['*'] , function($q) use ( $nrichiesta )
+		{
+			$q->where('T_Richieste_Oggetti.id_richiesta', $nrichiesta, '=');
+		})->fetchAll();
+
+        foreach ($result as $value){
+            if($value['tipo'] == "Bene"){
+                if($value['categoria'] == "Bene Inventariabile" || $value['categoria'] == "Parte di Bene Inventariabile"){
+                    for($i = 0 ; $i < $value['quantita']; $i++){
+                        
+                        $editor->db()
+                        ->query('insert', 'T_Dati_Fiscali_New')
+                        ->set(  array( 'T_Dati_Fiscali_New.id_ordine' => $id,   
+                            'T_Dati_Fiscali_New.id_richiesta' => $nrichiesta,
+                            'T_Dati_Fiscali_New.id_richiesta_oggetto' => $value['id'],
+                            'T_Dati_Fiscali_New.quantita' => 1
+                            ))  
+                            ->exec();
+                        
+                    }
+                }
+                elseif($value['categoria'] == "Bene non inventariabile"){
+                    $editor->db()
+                    ->query('insert', 'T_Dati_Fiscali_New')
+                    ->set(  array( 'T_Dati_Fiscali_New.id_ordine' => $id,   
+                        'T_Dati_Fiscali_New.id_richiesta' => $nrichiesta,
+                        'T_Dati_Fiscali_New.id_richiesta_oggetto' => $value['id'],
+                        'T_Dati_Fiscali_New.quantita' =>  $value['quantita']
+                        ))  
+                        ->exec();
+
+                }
+                elseif($value['categoria'] == "Materiale di consumo"){
+                    $editor->db()
+                    ->query('insert', 'T_Dati_Fiscali_New')
+                    ->set(  array( 'T_Dati_Fiscali_New.id_ordine' => $id,   
+                        'T_Dati_Fiscali_New.id_richiesta' => $nrichiesta,
+                        'T_Dati_Fiscali_New.id_richiesta_oggetto' => $value['id'],
+                        'T_Dati_Fiscali_New.quantita' =>  $value['quantita']
+                        ))  
+                        ->exec();
+                }
+
+                
+            }
+            elseif($value['tipo'] == "Servizio"){
+                for($i = 0 ; $i < $value['numero_rate']; $i++){
+                    $editor->db()
+                    ->query('insert', 'T_Dati_Fiscali_New')
+                    ->set(  array( 'T_Dati_Fiscali_New.id_ordine' => $id,   
+                        'T_Dati_Fiscali_New.id_richiesta' => $nrichiesta,
+                        'T_Dati_Fiscali_New.id_richiesta_oggetto' => $value['id'],
+                        'T_Dati_Fiscali_New.rata' =>  $i+1
+                        ))  
+                        ->exec();
+                }
+            }
+        //     $editor->db()
+        //     ->query('insert', 'T_Dati_Fisc')
+        //     ->set(  array( 'T_Dati_Fisc.descrizione_bene' => $value['descrizione'],   
+        //                     'T_Dati_Fisc.qta_ordine' => $value['quantita'],
+        //                     'T_Dati_Fisc.imp_ordine' => $value['importo_unitario']
+        //     ))  
+        //     ->exec();
+        //     //id_richiesta descrizione quantita importo_unitario importo iva totale numero_rate rateazione inizio fine
+
+        //     // --       descrizione_bene qta_ordine imp_ordine 
+        }
+
+
+
     })
     ->on( 'preCreate', function ( $editor, $values ) {
 
@@ -154,26 +236,6 @@ $editor->fields(
         ->field( 'T_Ordini.Note' )
         ->setValue( "" );
 		}
-
-
-        //copia i beni dalla tabella T_Richieste_Oggetti a T_Dati_Fiscali
-        $result = $editor->db()->select("T_Richieste_Oggetti", ['*'] , function($q) use ( $nrichiesta )
-		{
-			$q->where('T_Richieste_Oggetti.id_richiesta', $nrichiesta, '=');
-		})->fetchAll();
-
-        // foreach ($result as $value){
-        //     $editor->db()
-        //     ->query('insert', 'T_Dati_Fisc')
-        //     ->set(  array( 'T_Dati_Fisc.descrizione_bene' => $value['descrizione'],   
-        //                     'T_Dati_Fisc.qta_ordine' => $value['quantita'],
-        //                     'T_Dati_Fisc.imp_ordine' => $value['importo_unitario']
-        //     ))  
-        //     ->exec();
-        //     //id_richiesta descrizione quantita importo_unitario importo iva totale numero_rate rateazione inizio fine
-
-        //     // --       descrizione_bene qta_ordine imp_ordine 
-        // }
 
         
         //Genera numero d'ordine
