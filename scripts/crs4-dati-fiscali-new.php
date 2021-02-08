@@ -94,7 +94,7 @@ $crs4 = new Crs4("Ordini", $db, $editor);
 		Field::inst( 'V_People_all.Cognome' ),
 		Field::inst( 'V_People_all.Nome' ),
 		Field::inst( 'v2.Cognome' ),
-		Field::inst( 'v2.Nome' ),
+		Field::inst( 'v2.Nome' )
 
 
 	)

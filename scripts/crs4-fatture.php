@@ -32,7 +32,7 @@ $crs4 = new Crs4("Ordini", $db, $editor);
 		Field::inst( 'T_Fatture.data_fattura' ),
 		Field::inst( 'T_Fatture.id_ordine' ),
 		Field::inst( 'T_Fatture.id_fattura' ),
-		Field::inst( 'T_Fatture.prot_iva' ),
+		Field::inst( 'T_Fatture.prot_iva' )
 		
 		
 	)
