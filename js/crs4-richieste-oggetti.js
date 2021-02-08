@@ -209,6 +209,9 @@ $/*
                 paging: true,
                 deferLoading: true,
                 serverSide: true,
+                language: {
+                    url: 'http://cdn.datatables.net/plug-ins/1.10.22/i18n/Italian.json'
+                },
                 order: [1, "desc"],
                 dom: 'Blfrtip',
                 ajax: {

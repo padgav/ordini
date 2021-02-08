@@ -161,8 +161,7 @@
 			ajax: 'scripts/crs4-richieste.php',
 			scrollX: true,
 			language: {
-				decimal: ",",
-				thousands: "."
+				url: 'http://cdn.datatables.net/plug-ins/1.10.22/i18n/Italian.json'
 			},
 			order: [[ 2, "desc" ]],
 			columns: [
@@ -254,9 +253,9 @@
 			select: "single",
 			lengthChange: false,
 			buttons: [
-				{ extend: 'create', editor: editor },
-				{ extend: 'edit', editor: editor },
-				{ extend: 'remove', editor: editor },
+				{ extend: 'create', editor: editor, text:'Nuova Richiesta' },
+				{ extend: 'edit', editor: editor, text: 'Modifica'},
+				{ extend: 'remove', editor: editor, text: 'Elimina' },
 				{ text: "Bozze", action: function(e, dt, node, config){ dt.column(22).search("Bozza").draw(); }},
 				{ text: "In Valutazione", action: function(e, dt, node, config){ dt.column(22).search("In Valutazione").draw(); }},
 				{ text: "Approvate", action: function(e, dt, node, config){ dt.column(22).search("Approvata").draw(); }},

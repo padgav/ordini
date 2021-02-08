@@ -218,6 +218,9 @@ $/*
                         d.opt = options;
                     }
                 },
+                language: {
+                    url: 'http://cdn.datatables.net/plug-ins/1.10.22/i18n/Italian.json'
+                },
                 columns: [
                     {
                         data: "T_Richieste_Oggetti.id_richiesta",

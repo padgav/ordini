@@ -82,8 +82,9 @@ $editor->fields(
 
 
         Field::inst( 'T_Ordini.ID_St_Ord' ), 
-        Field::inst( 'T_Ordini.D_Garanzia' ), 
-        Field::inst( 'T_Ordini.Note' ),
+        Field::inst( 'T_Ordini.d_garanzia' ), 
+        Field::inst( 'T_Ordini.note' ),
+        Field::inst( 'T_Ordini.installazione' ),
         Field::inst( 'T_Progetti.cdc' ),
 		Field::inst( 'T_Progetti.cup' ),
         Field::inst( 'T_Progetti.finanziamento' ),
@@ -229,11 +230,11 @@ $editor->fields(
         ->setValue( 0 );
 
         $editor
-        ->field( 'T_Ordini.D_Garanzia' )
+        ->field( 'T_Ordini.d_garanzia' )
         ->setValue( "" );
 
         $editor
-        ->field( 'T_Ordini.Note' )
+        ->field( 'T_Ordini.note' )
         ->setValue( "" );
 		}
 

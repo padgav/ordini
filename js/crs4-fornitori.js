@@ -110,6 +110,9 @@ $/*
                 pageLength: 50,
                 paging: true,
                 fixedColumns: true,
+                language: {
+                    url: 'http://cdn.datatables.net/plug-ins/1.10.22/i18n/Italian.json'
+                },
                 dom: 'Blfrtip',
                 ajax: {
                     url: 'scripts/crs4-fornitori.php',

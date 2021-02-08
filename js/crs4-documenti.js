@@ -65,6 +65,9 @@ $/*
                 fixedColumns: true,
                 dom: 'Blfrtip',
                 ajax: 'scripts/crs4-documenti.php',
+                language: {
+                    url: 'http://cdn.datatables.net/plug-ins/1.10.22/i18n/Italian.json'
+                },
                 columns: [
                     {
                         "data": null,

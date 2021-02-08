@@ -1,18 +1,18 @@
 function format ( d ) {
     // `d` is the original data object for the row
-    console.log(d)
+    console.log("ciao", d)
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr>'+
             '<td>Note:</td>'+
-            '<td>'+d.Garanzia+'</td>'+
+            '<td>'+d.T_Ordini.d_garanzia+'</td>'+
         '</tr>'+
         '<tr>'+
             '<td>Garanzia:</td>'+
-            '<td>'+d.Note+'</td>'+
+            '<td>'+d.T_Ordini.note+'</td>'+
         '</tr>'+
         '<tr>'+
             '<td>Installazione:</td>'+
-            '<td>'+d.installazione+'</td>'+
+            '<td>'+d.T_Ordini.installazione+'</td>'+
         '</tr>'+
     '</table>';
 }
@@ -84,11 +84,15 @@ $(function () {
             },
             {
                 label: "Garanzia:",
-                name: "T_Ordini.D_Garanzia"
+                name: "T_Ordini.d_garanzia"
             }, 
             {
                 label: "Note:",
-                name: "T_Ordini.Note"
+                name: "T_Ordini.note"
+            },
+            {
+                label: "Installazione:",
+                name: "T_Ordini.installazione"
             }
 
         ]
@@ -121,16 +125,9 @@ $(function () {
         //scrollY: 400,
         "pageLength": 10,
         //scrollCollapse: true,
-        "language": {
-            "lengthMenu": " Mostra _MENU_ Ordini per pagina",
-            paginate: {
-                first:      "Inizio",
-                previous:   "Precedente",
-                next:       "Successivo",
-                last:       "Ultimo"
-            }
+        language: {
+            url: 'http://cdn.datatables.net/plug-ins/1.10.22/i18n/Italian.json'
         },
-
         "columns": [
 
             {

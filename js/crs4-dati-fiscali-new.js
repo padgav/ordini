@@ -151,6 +151,9 @@ $(document).ready(function() {
 			url: 'scripts/crs4-dati-fiscali-new.php',
 			type: 'POST'
 		},
+		language: {
+			url: 'http://cdn.datatables.net/plug-ins/1.10.22/i18n/Italian.json'
+		},
 		serverSide: true,
 		paging: true,
 		scrollY: 400,
