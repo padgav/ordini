@@ -32,7 +32,7 @@ $crs4 = new Crs4("Richieste", $db, $editor);
 		->options( Options::inst()
 		->table( 'V_People_all' )
 		->value( 'ID' )
-		->label( array('Nome', 'Cognome')  )
+		->label( array('Cognome', 'Nome')  )
 		)
 		->validator( Validate::dbValues() ),
 		
@@ -41,7 +41,7 @@ $crs4 = new Crs4("Richieste", $db, $editor);
 		->options( Options::inst()
 		->table( 'V_People_all' )
 		->value( 'ID' )
-		->label( array('Nome', 'Cognome')  )
+		->label( array('Cognome', 'Nome')  )
 		)
 		->validator( Validate::dbValues() ),
 

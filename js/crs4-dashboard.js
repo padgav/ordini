@@ -74,6 +74,7 @@ var USER;
 
     function setUserInfo(info){
         $(".user_name").html(info.data.nome + " " + info.data.cognome);
+        $("#picture").attr("src", info.data.picture);
         USER = info.data.nome + " " + info.data.cognome;
         setFunctions(info.permessi);
     }

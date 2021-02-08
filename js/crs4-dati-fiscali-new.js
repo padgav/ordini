@@ -117,7 +117,18 @@ $(document).ready(function() {
 			{
 				"label": "Matricola:",
 				"name": "T_Dati_Fiscali_New.matricola"
+			},
+			{
+				"label": "Inventariato da:",
+				"name": "T_Dati_Fiscali_New.inventariato_da",
+				"type": "select"
+			},
+			{
+				"label": "Assegnato a:",
+				"name": "T_Dati_Fiscali_New.assegnato_a",
+				"type": "select"
 			}
+
 			
 		]
 	} );
@@ -189,6 +200,20 @@ $(document).ready(function() {
 			},
 			{
 				"data": "T_Dati_Fiscali_New.matricola"
+			},
+			{
+				"data": null,
+				render: function (data, type, row) {
+					return data.V_People_all.Cognome + ' ' + data.V_People_all.Nome;
+				},
+				editField: "T_Dati_Fiscali_New.inventariato_da"
+			},
+			{
+				"data": null,
+				render: function (data, type, row) {
+					return data.v2.Cognome + ' ' + data.v2.Nome;
+				},
+				editField: "T_Dati_Fiscali_New.assegnato_a"
 			}
 		],
 		select: true,

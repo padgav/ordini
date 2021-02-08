@@ -54,13 +54,21 @@ if(isset($_VARS['cmd']) && $_VARS['cmd'] == 'login'){
   
   }
   else{
-    
+       
         $_SESSION["userid"] = $resultjson["USER_UUID"];
         $_SESSION["nome"] = $resultjson["NOME"];
         $_SESSION["cognome"] = $resultjson["COGNOME"];
+
         $out["status"]["code"] = 101;
         $out["status"]["message"] = "Login Successful";
-        $out["data"] = array("userid" => $resultjson["USER_UUID"], "nome" => $resultjson["NOME"],  "cognome" => $resultjson["COGNOME"]    ) ;
+
+        $json = file_get_contents("http://data-layer.crs4.it/api/people/user/" . $resultjson["USER_UUID"]);
+        $obj = json_decode($json);
+        
+        $picture = "http://static-portale.crs4.it/images/people/" . $obj->info[0]->picture;
+        $_SESSION["picture"] = $picture;
+
+        $out["data"] = array("userid" => $resultjson["USER_UUID"], "nome" => $resultjson["NOME"],  "cognome" => $resultjson["COGNOME"], "picture" => $picture  ) ;
         echo json_encode($out);
         exit(0);
   } 
@@ -118,7 +126,7 @@ else if(isset($_VARS['cmd']) && $_VARS['cmd'] == 'getuserinfo'){
 
   $out["status"]["code"] = 101;
   $out["status"]["message"] = "Login Successful";
-  $out["data"] = array("userid" => $_SESSION["userid"], "nome" => $_SESSION["nome"],  "cognome" => $_SESSION["cognome"]);
+  $out["data"] = array("userid" => $_SESSION["userid"], "nome" => $_SESSION["nome"],  "cognome" => $_SESSION["cognome"], "picture" => $_SESSION["picture"]);
   
   $result1 = Editor::inst( $db, 'T_Permessi', 'id' )->fields(
     Field::inst( 'T_Permessi.id_applicazione' ),

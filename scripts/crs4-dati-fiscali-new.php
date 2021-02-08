@@ -74,23 +74,36 @@ $crs4 = new Crs4("Ordini", $db, $editor);
 		Field::inst( 'T_Dati_Fiscali_New.rata' ),
 		Field::inst( 'T_Dati_Fiscali_New.numero_inventario' ),
 		Field::inst( 'T_Dati_Fiscali_New.matricola' ),
-		Field::inst( 'T_Dati_Fiscali_New.posizione' ),
+
+		Field::inst( 'T_Dati_Fiscali_New.assegnato_a' )
+		->options( Options::inst()
+		->table( 'V_People_all' )
+		->value( 'ID' )
+		->label( array('Nome', 'Cognome')  )
+		)
+		->validator( Validate::dbValues() ),
+
 
 		Field::inst( 'T_Dati_Fiscali_New.inventariato_da' )
 		->options( Options::inst()
 							->table( 'V_People_all' )
 							->value( 'ID' )
-							->label( array('cognome', 'nome'))                
+							->label( array('Nome', 'Cognome'))                
 						)
 		->validator( Validate::dbValues() ),
+		Field::inst( 'V_People_all.Cognome' ),
+		Field::inst( 'V_People_all.Nome' ),
+		Field::inst( 'v2.Cognome' ),
+		Field::inst( 'v2.Nome' ),
 
 
 	)
 	->leftJoin( 'T_Ordini', 'T_Ordini.ID_Ordine', '=', 'T_Dati_Fiscali_New.id_ordine' )
     ->leftJoin( 'T_Richieste', 'T_Richieste.ID', '=', 'T_Dati_Fiscali_New.id_richiesta' )
     ->leftJoin( 'T_Richieste_Oggetti', 'T_Richieste_Oggetti.id', '=', 'T_Dati_Fiscali_New.id_richiesta_oggetto' )
-	->leftJoin( 'V_People_all', 'V_People_all.ID', '=', 'T_Dati_Fiscali_New.inventariato_da' )
 	->leftJoin( 'T_Bolle', 'T_Bolle.ID_Bolla', '=', 'T_Dati_Fiscali_New.id_bolla' )
 	->leftJoin( 'T_Fatture', 'T_Fatture.ID_Fattura', '=', 'T_Dati_Fiscali_New.id_fattura' )
+	->leftJoin( 'V_People_all', 'V_People_all.ID', '=', 'T_Dati_Fiscali_New.inventariato_da' )
+	->leftJoin( 'V_People_all as v2', 'v2.ID', '=', 'T_Dati_Fiscali_New.assegnato_a' )
 	->process( $_POST )
 	->json();

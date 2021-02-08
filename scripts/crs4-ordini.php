@@ -126,7 +126,7 @@ $editor->fields(
                         
                     }
                 }
-                elseif($value['categoria'] == "Bene non inventariabile"){
+                elseif($value['categoria'] == "Bene non Inventariabile"){
                     $editor->db()
                     ->query('insert', 'T_Dati_Fiscali_New')
                     ->set(  array( 'T_Dati_Fiscali_New.id_ordine' => $id,   

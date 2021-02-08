@@ -118,7 +118,9 @@ $(function () {
 
         "sPaginationType": "full_numbers",
         paging: true,
-        scrollY: 400,
+        //scrollY: 400,
+        "pageLength": 10,
+        //scrollCollapse: true,
         "language": {
             "lengthMenu": " Mostra _MENU_ Ordini per pagina",
             paginate: {
@@ -159,7 +161,7 @@ $(function () {
         ],
         "order": [[2, 'desc'],[1,'desc']],
 
-        dom: "Bfrtip",
+        dom: "Blfrtip",
         select: true,
 
         buttons: [

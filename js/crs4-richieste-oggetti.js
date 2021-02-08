@@ -203,9 +203,9 @@ $/*
             var options = ""
 
             var richieste_oggetti = $('#T_Richieste_Oggetti').DataTable({
-                scrollY: 400,
-                scrollX: true,
-                pageLength: 5,
+                //scrollY: 400,
+                //scrollX: true,
+                //pageLength: 10,
                 paging: true,
                 deferLoading: true,
                 serverSide: true,
