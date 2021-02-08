@@ -92,7 +92,7 @@ $editor->fields(
 		Field::inst( 'T_Richieste.iva' ),
 		Field::inst( 'T_Richieste.totale' ),
         Field::inst( 'T_Richieste.note' ),
-        Field::inst( 'T_Richieste.cig' ),
+        Field::inst( 'T_Richieste.cig' )
         
     )
     ->on( 'postCreate', function ( $editor, $id, $values, $row) {
