@@ -74,6 +74,7 @@ $crs4 = new Crs4("Ordini", $db, $editor);
 		Field::inst( 'T_Dati_Fiscali_New.rata' ),
 		Field::inst( 'T_Dati_Fiscali_New.numero_inventario' ),
 		Field::inst( 'T_Dati_Fiscali_New.matricola' ),
+		Field::inst( 'T_Dati_Fiscali_New.posizione' ),
 
 		Field::inst( 'T_Dati_Fiscali_New.assegnato_a' )
 		->options( Options::inst()
