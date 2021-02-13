@@ -44,6 +44,7 @@ $/*
                         name: "T_Richieste_Oggetti.rateazione",
                         type: "select",
                         options: [
+                            "Rata Unica",
                             "Oraria",
                             "Giornaliera",
                             "Settimanale",
@@ -54,7 +55,8 @@ $/*
                             "Pentamestrale",
                             "Semestrale",
                             "Annuale",
-                            "Biennale"
+                            "Biennale",
+                            "Triennale"
                         ]
                     },
                     {
@@ -333,13 +335,13 @@ $/*
                     {
                         extend: 'pdfHtml5', editor: editor,
                         text: 'Visualizza Richiesta',
+                        name: 'stampa',
                         title: "Richiesta di acquisto",
                         exportOptions: {
                             columns: [3,4,5,6,7,8,9,10,11,12,13]
                         },
                         footer: true,
                         customize: function (doc) {
-                           
                             var r = parent.richiesta[0];
                             console.log(r);
                             var stsc = '[   ]';
@@ -475,7 +477,7 @@ $/*
                                     headerRows: 1,
                                     body: [
                                         [{text: 'Dati sulla Richiesta', style:'header', colSpan: 4}, '', '', ''],
-                                        ['Fornitura di:', r['T_Richieste']['oggetto'], '', ''],
+                                        ['Fornitura di:', r['T_Richieste']['oggetto'], 'CIG', r['T_Richieste']['cig']],
                                         ['Imponibile:', r['T_Richieste']['imponibile'] + ' €' , 'IVA:', r['T_Richieste']['iva'] + ' €'],
                                         ['Mepa:', r['T_Richieste']['mepa'],'Prestazione di servizi:', r['T_Richieste']['prestazione_servizi']],
                                         ['Prodotti informatici:', r['T_Richieste']['prod_inf'], '', ''],

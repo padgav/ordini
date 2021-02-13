@@ -260,10 +260,28 @@ $(document).ready(function() {
                         .mode( 'create' );
                 }
 			},
-			{ extend: 'edit',   editor: editorinventario, text: 'Inventario' },
+			{ extend: 'edit',   editor: editorinventario, text: 'Inventario' , name:'inventario'},
 
 		]
 	} );
+
+
+
+	// dati_fiscali_new
+    // .on('select', function () {
+    //     dati_fiscali_new.rows({selected: true}).every( function ( rowIdx, tableLoop, rowLoop ) {
+	// 		var data = this.data();
+	// 		console.log(data.T_Richieste_Oggetti.categoria);
+    //         if ( data.T_Richieste_Oggetti.categoria != 'Bene Inventariabile') {
+	// 			console.log(dati_fiscali_new.button( 'inventario:name' ))
+	// 			dati_fiscali_new.button( 6 ).disable();
+    //             // window.setTimeout(function (){
+	// 			// 	dati_fiscali_new.button( 6 ).disable();
+	// 			// },30)
+    //         }
+    //     });
+	// });
+	
 } );
 
 }(jQuery));

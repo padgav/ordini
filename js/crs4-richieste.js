@@ -150,10 +150,16 @@
 					options:[
 						"Bozza",
 						"In Valutazione",
-						"Approvata"
+						"Approvata",
+						"Ordine"
 					]
 				}
 			]
+		});
+
+		editor.dependent(['T_Richieste.imponibile', 'T_Richieste.iva'], function (val, data, callback) {
+			editor.field('T_Richieste.totale').set(parseFloat(data.values['T_Richieste.imponibile']) +  parseFloat( data.values['T_Richieste.iva']));
+			callback(true);
 		});
 
 		var table = $('#T_Richieste').DataTable({
@@ -256,11 +262,15 @@
 				{ extend: 'create', editor: editor, text:'Nuova Richiesta' },
 				{ extend: 'edit', editor: editor, text: 'Modifica'},
 				{ extend: 'remove', editor: editor, text: 'Elimina' },
-				{ text: "Bozze", action: function(e, dt, node, config){ dt.column(22).search("Bozza").draw(); }},
-				{ text: "In Valutazione", action: function(e, dt, node, config){ dt.column(22).search("In Valutazione").draw(); }},
-				{ text: "Approvate", action: function(e, dt, node, config){ dt.column(22).search("Approvata").draw(); }},
-				{ text: "Ordini", action: function(e, dt, node, config){ dt.column(22).search("Ordine").draw(); }}
-				
+				{ text: "Mostra Bozze", action: function(e, dt, node, config){ dt.column(22).search("Bozza").draw(); }},
+				{ text: "Mostra In Valutazione", action: function(e, dt, node, config){ dt.column(22).search("In Valutazione").draw(); }},
+				{ text: "Mostra Approvate", action: function(e, dt, node, config){ dt.column(22).search("Approvata").draw(); }},
+				{ text: "Mostra trasformate in Ordini", action: function(e, dt, node, config){ dt.column(22).search("Ordine").draw(); }},
+				{ text: "Stampa richesta", action: function(e, dt, node, config){ 
+					var tobj = $('#T_Richieste_Oggetti').DataTable();
+					tobj.button( 'stampa:name' ).trigger(); },
+					extend: 'selected'
+				}
 			]
 		});
 
