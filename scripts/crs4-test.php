@@ -19,7 +19,7 @@ use
 	DataTables\Editor\Validate,
 	DataTables\Editor\ValidateOptions;
 
-	exit(1);
+	//exit(1);
 
 // Build our Editor instance and process the data coming from _POST
 $editor =  Editor::inst( $db, 'T_Beni_Gamma_New_New', 'id' );
