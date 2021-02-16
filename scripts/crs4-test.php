@@ -70,7 +70,7 @@ $editor =  Editor::inst( $db, 'T_Beni_Gamma_New_New', 'id' );
 	foreach ($gamma['data'] as $value){
 		$row = $value['T_Beni_Gamma_New_New'];
 
-		if(!array_key_exists($row['id_fornitore'] , $fornitori,) ){
+		if(!array_key_exists($row['id_fornitore'] , $fornitori) ){
 			print("inserisco " . $row['id_fornitore'] . "<br/>");
 			// print($row['id_fornitore'] . "<br/>");
 			// print($row['ragione_sociale'] . "<br/>");
@@ -88,7 +88,7 @@ $editor =  Editor::inst( $db, 'T_Beni_Gamma_New_New', 'id' );
 				'cap'   => $row['cap'],
 				'citta'   => $row['citta'],
 				'piva'   => $row['p_iva'],
-				'cfiscale'   => $row['cod_fisc'],
+				'cfiscale'   => $row['cod_fisc']
 			) );
 			$statement0 = 'SELECT LAST_INSERT_ID() as id';
 			$result0 =$db ->raw()->exec($statement0);
@@ -104,7 +104,7 @@ $editor =  Editor::inst( $db, 'T_Beni_Gamma_New_New', 'id' );
 	foreach ($gamma['data'] as $value){
 		$row = $value['T_Beni_Gamma_New_New'];
 
-		if(!array_key_exists($row['numreg'] , $ordini,) ){
+		if(!array_key_exists($row['numreg'] , $ordini) ){
 		print($row['ordine'] . "<br/>");
 
 		
